@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezolute Consulting - Industry Solutions</title>
+    <link rel="icon" type="image/png" href="assets/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ============================================================================
+           INDUSTRIES PAGE - ENCAPSULATED STYLES (Purple Theme, Centered Cards)
+           ========================================================================== */
+
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        /* ----- CSS VARIABLES (Purple Only) ----- */
+        :root {
+            --primary-purple: #9b4dff;
+            --secondary-red: #ff4d4d;        /* kept for gradient buttons */
+            --accent-purple-light: #b47aff;
+            --dark-bg: #0a0a0a;
+            --dark-card: rgba(30, 30, 30, 0.8);
+            --border-light: rgba(255, 255, 255, 0.08);
+            --text-light: #ffffff;
+            --text-muted: #cbd5e1;
+            --text-secondary: #e2e8f0;
+            --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* ----- TYPOGRAPHY ----- */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 750;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--accent-purple-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ----- BUTTONS (same as other pages) ----- */
+        .btn {
+            padding: 0.95rem 2.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: inline-block;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #9b4dff, #ff4d4d);
+            color: #fff;
+            box-shadow: 0 10px 35px rgba(155, 77, 255, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 45px rgba(155, 77, 255, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid var(--primary-purple);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-purple);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2.5rem;
+        }
+
+        /* ----- HEADER with split logo (matches home/about/services) ----- */
+        .glassy-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(155, 77, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform var(--transition-fast);
+        }
+
+        .glassy-header.header-hidden {
+            transform: translateY(-100%);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: #fff;
+            transition: opacity var(--transition-fast);
+        }
+
+        .logo:hover {
+            opacity: 0.85;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 4px 8px rgba(155, 77, 255, 0.2));
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-text .rezolute {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+
+        .logo-text .consulting {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--primary-purple);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            margin: 0;
+        }
+
+        nav a {
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-purple);
+            transition: width var(--transition-fast);
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-purple);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #fff;
+            transition: all var(--transition-fast);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ----- PAGE HEADER (with industry.jpg background) ----- */
+        .page-header {
+            position: relative;
+            min-height: 500px;
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 0;
+            background-image: url('assets/industry.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(10, 10, 10, 0.65) 0%,
+                rgba(10, 10, 10, 0.45) 50%,
+                rgba(155, 77, 255, 0.12) 100%
+            );
+            z-index: 1;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(155, 77, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(155, 77, 255, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        @keyframes zoomIn {
+            from { background-size: 100%; }
+            to { background-size: 110%; }
+        }
+
+        .page-header {
+            animation: zoomIn 25s ease-in-out infinite alternate;
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            margin-bottom: 1rem;
+        }
+
+        .page-header-subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 1rem auto 0;
+            color: var(--text-secondary);
+        }
+
+        /* ----- SECTIONS (general) ----- */
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid rgba(155, 77, 255, 0.08);
+        }
+
+        .section-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--primary-purple);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .intro-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .intro-content p {
+            font-size: 1.1rem;
+        }
+
+        /* ----- INDUSTRIES GRID (cards) ----- */
+        .industries-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .industry-preview {
+            background: var(--dark-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-smooth);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            flex: 0 1 320px;
+            min-width: 280px;
+            max-width: 360px;
+        }
+
+        .industry-preview:hover {
+            border-color: var(--primary-purple);
+            background: rgba(30, 30, 30, 0.95);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(155, 77, 255, 0.2);
+        }
+
+        .industry-icon {
+            font-size: 2.8rem;
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+            transition: color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .industry-preview:hover .industry-icon {
+            color: var(--accent-purple-light);
+            transform: scale(1.15);
+        }
+
+        .industry-preview h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .industry-solution {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-purple-light);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .industry-preview p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .industry-cta {
+            color: var(--primary-purple);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: gap var(--transition-fast), color var(--transition-fast);
+            margin-top: auto;
+        }
+
+        .industry-preview:hover .industry-cta {
+            gap: 1rem;
+            color: var(--accent-purple-light);
+        }
+
+        /* ----- BENEFITS SECTION (grid of benefit items) ----- */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-item {
+            background: rgba(155, 77, 255, 0.05);
+            border: 1px solid rgba(155, 77, 255, 0.15);
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            transition: all var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .benefit-item:hover {
+            background: rgba(155, 77, 255, 0.1);
+            border-color: var(--primary-purple);
+            transform: translateY(-4px);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+            transition: color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .benefit-item:hover .benefit-icon {
+            color: var(--accent-purple-light);
+            transform: scale(1.15);
+        }
+
+        .benefit-text strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .benefit-text p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ----- FINAL CTA ----- */
+        .final-cta {
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .final-cta h2 {
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta p {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* ----- FOOTER ----- */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 1px solid rgba(155, 77, 255, 0.1);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .footer-logo h3 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-size: 1.3rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .footer-logo p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(155, 77, 255, 0.1);
+            border: 1px solid rgba(155, 77, 255, 0.25);
+            border-radius: 50%;
+            color: var(--primary-purple);
+            transition: all var(--transition-fast);
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-purple);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(155, 77, 255, 0.3);
+        }
+
+        .copyright {
+            color: rgba(203, 213, 225, 0.4);
+            font-size: 0.85rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a,
+        .footer-contact a,
+        .footer-contact p {
+            color: var(--text-muted);
+            transition: color var(--transition-fast);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover,
+        .footer-contact a:hover {
+            color: var(--accent-purple-light);
+        }
+
+        .footer-contact p {
+            margin-bottom: 0.8rem;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 768px) {
+            html { font-size: 14px; }
+
+            .glassy-header { margin-top: 0; }
+
+            .header-container { padding: 0.8rem 0; }
+
+            .logo-text .rezolute { font-size: 1.4rem; }
+            .logo-text .consulting { font-size: 1.1rem; }
+            .logo img { height: 35px; }
+
+            nav ul {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(12px);
+                width: 100%;
+                text-align: center;
+                transition: left var(--transition-fast);
+                padding: 2.5rem 0;
+                gap: 1.5rem;
+                z-index: 999;
+            }
+
+            nav ul.active { left: 0; }
+
+            .hamburger { display: flex; }
+
+            .page-header {
+                margin-top: 70px;
+                min-height: 350px;
+                padding: 3rem 0;
+            }
+
+            .page-header h1 { font-size: 2rem; }
+
+            section { padding: 4rem 0; }
+
+            .section-title { font-size: 2rem; }
+
+            .industries-grid {
+                justify-content: center;
+            }
+
+            .industry-preview {
+                flex: 1 1 100%;
+                max-width: 400px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid { gap: 2.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.3rem; }
+
+            .page-header {
+                margin-top: 65px;
+                min-height: 300px;
+                padding: 2rem 0;
+            }
+
+            .logo img { height: 30px; }
+            .logo-text .rezolute { font-size: 1.2rem; }
+            .logo-text .consulting { font-size: 1rem; }
+
+            nav ul { top: 65px; }
+
+            .industry-preview {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with split logo -->
+    <header class="glassy-header" id="mainHeader">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/Logo.png" alt="Rezolute Consulting">
+                <span class="logo-text">
+                    <span class="rezolute">Rezolute</span>
+                    <span class="consulting">Consulting</span>
+                </span>
+            </a>
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="industries.html" class="active">Industries</a></li>
+                    <li><a href="#contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header with industry.jpg background -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Industry Solutions</h1>
+            <p class="page-header-subtitle">Specialized cybersecurity expertise for your industry's unique challenges, compliance requirements, and threat landscape</p>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="intro-content">
+                <p>Every industry faces distinct security challenges, regulatory pressures, and evolving threats. One-size-fits-all security approaches don't cut it.</p>
+                <p><strong>Rezolute provides specialized solutions tailored to your industry's specific compliance mandates, threat landscape, and business priorities.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Grid -->
+    <section class="industries-preview">
+        <div class="container">
+            <h2 class="section-title">Browse by Industry</h2>
+            <div class="industries-grid">
+                <a href="fintech.html" class="industry-preview">
+                    <div class="industry-icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>Fintech & Payment</h3>
+                    <div class="industry-solution">PCI DSS Compliance & Payment Security</div>
+                    <p>Protect payment systems, customer data, and achieve PCI DSS compliance. Specialized expertise in fintech-specific threats and regulatory requirements.</p>
+                    <div class="industry-cta">Explore <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="healthcare.html" class="industry-preview">
+                    <div class="industry-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3>Healthcare</h3>
+                    <div class="industry-solution">HIPAA-Compliant Data Protection</div>
+                    <p>Safeguard patient data, achieve HIPAA compliance, and protect life-critical systems. Healthcare-specific security and governance solutions.</p>
+                    <div class="industry-cta">Explore <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="saas-cloud.html" class="industry-preview">
+                    <div class="industry-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>SaaS & Cloud</h3>
+                    <div class="industry-solution">Multi-Cloud Security & DevSecOps</div>
+                    <p>Secure cloud migrations, implement DevSecOps, and protect multi-cloud environments. Solutions for companies moving to cloud operations.</p>
+                    <div class="industry-cta">Explore <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="enterprise-manufacturing.html" class="industry-preview">
+                    <div class="industry-icon"><i class="fas fa-industry"></i></div>
+                    <h3>Enterprise & Manufacturing</h3>
+                    <div class="industry-solution">Operational Technology & Network Security</div>
+                    <p>Protect OT/IT infrastructure, implement legacy system hardening, and secure manufacturing networks against industrial threats.</p>
+                    <div class="industry-cta">Explore <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="financial-services.html" class="industry-preview">
+                    <div class="industry-icon"><i class="fas fa-bank"></i></div>
+                    <h3>Financial Services</h3>
+                    <div class="industry-solution">Regulatory Compliance & Data Protection</div>
+                    <p>Achieve SOX, regulatory compliance, and implement enterprise-grade security for banking, investment, and insurance operations.</p>
+                    <div class="industry-cta">Explore <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="energy-utilities.html" class="industry-preview">
+                    <div class="industry-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Energy & Utilities</h3>
+                    <div class="industry-solution">Critical Infrastructure & NERC-CIP</div>
+                    <p>Secure critical infrastructure, implement NERC-CIP compliance, and protect grid operations from state-sponsored threats.</p>
+                    <div class="industry-cta">Explore <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="telecommunications.html" class="industry-preview">
+                    <div class="industry-icon"><i class="fas fa-wifi"></i></div>
+                    <h3>Telecommunications</h3>
+                    <div class="industry-solution">Network Infrastructure & 5G Security</div>
+                    <p>Protect network infrastructure, implement 5G security, and defend against large-scale distributed attacks on connectivity.</p>
+                    <div class="industry-cta">Explore <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <a href="education.html" class="industry-preview">
+                    <div class="industry-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Education & Research</h3>
+                    <div class="industry-solution">IP Protection & Student Data Security</div>
+                    <p>Protect research IP, safeguard student records, and secure campus networks. Solutions for universities and research institutions.</p>
+                    <div class="industry-cta">Explore <i class="fas fa-arrow-right"></i></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">Why Industry-Specific Solutions?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-crosshairs"></i></div>
+                    <div class="benefit-text">
+                        <strong>Targeted Approach</strong>
+                        <p>Security solutions built around YOUR industry's specific threats, not generic best practices.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-gavel"></i></div>
+                    <div class="benefit-text">
+                        <strong>Compliance Expertise</strong>
+                        <p>Deep knowledge of regulatory requirements specific to your industry—HIPAA, PCI DSS, SOX, NERC-CIP, and more.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="benefit-text">
+                        <strong>Faster Implementation</strong>
+                        <p>Proven methodologies for your industry mean faster deployment and quicker time-to-compliance.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-handshake"></i></div>
+                    <div class="benefit-text">
+                        <strong>Deep Expertise</strong>
+                        <p>Team experience with challenges specific to your sector—not cookie-cutter consulting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Find Your Industry Solution</h2>
+            <p>Select an industry above to explore how we've specialized our expertise to solve your unique security challenges.</p>
+            <div class="cta-buttons">
+                <a href="services.html" class="btn btn-secondary">View All Services</a>
+                <a href="contact.html" class="btn btn-primary">Schedule Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container footer-grid">
+            <div class="footer-logo">
+                <h3><img src="assets/Logo.png" alt="Rezolute Logo"><span>Rezolute Consulting</span></h3>
+                <p>Enterprise-grade cybersecurity consulting for organizations serious about security. Specialized. Proven. Trusted.</p>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="copyright">© 2026 Rezolute Consulting. All Rights Reserved.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Information</h4>
+                <p><a href="mailto:sales@rezoluteconsulting.com">sales@rezoluteconsulting.com</a></p>
+                <p><a href="mailto:tech@rezoluteconsulting.com">tech@rezoluteconsulting.com</a></p>
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(155, 77, 255, 0.1);">
+                    <p><strong>Address:</strong><br>16 CAC Street<br>Alapere, Lagos<br>Nigeria</p>
+                    <p style="margin-top: 1rem;"><strong>Response Time:</strong> 24 hours<br><strong>SLA:</strong> 99.9% uptime</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Header scroll hide/show
+        let lastScrollTop = 0;
+        const header = document.getElementById('mainHeader');
+        if (header) {
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.classList.add('header-hidden');
+                } else {
+                    header.classList.remove('header-hidden');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+        }
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+    </script>
+ 
+</body>
+</html>

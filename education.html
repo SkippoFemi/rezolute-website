@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezolute Consulting - Education & Research Security | IP Protection & Student Data</title>
+    <link rel="icon" type="image/png" href="assets/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ============================================================================
+           EDUCATION & RESEARCH INDUSTRY PAGE - ENCAPSULATED STYLES (Purple Theme)
+           ========================================================================== */
+
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        /* ----- CSS VARIABLES (Purple Only) ----- */
+        :root {
+            --primary-purple: #9b4dff;
+            --secondary-red: #ff4d4d;        /* kept for gradient buttons */
+            --accent-purple-light: #b47aff;
+            --dark-bg: #0a0a0a;
+            --dark-card: rgba(30, 30, 30, 0.8);
+            --border-light: rgba(255, 255, 255, 0.08);
+            --text-light: #ffffff;
+            --text-muted: #cbd5e1;
+            --text-secondary: #e2e8f0;
+            --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* ----- TYPOGRAPHY ----- */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 750;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--accent-purple-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ----- BUTTONS (same as other pages) ----- */
+        .btn {
+            padding: 0.95rem 2.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: inline-block;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #9b4dff, #ff4d4d);
+            color: #fff;
+            box-shadow: 0 10px 35px rgba(155, 77, 255, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 45px rgba(155, 77, 255, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid var(--primary-purple);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-purple);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2.5rem;
+        }
+
+        /* ----- HEADER with split logo (matches home/about/services/industries) ----- */
+        .glassy-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(155, 77, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform var(--transition-fast);
+        }
+
+        .glassy-header.header-hidden {
+            transform: translateY(-100%);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: #fff;
+            transition: opacity var(--transition-fast);
+        }
+
+        .logo:hover {
+            opacity: 0.85;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 4px 8px rgba(155, 77, 255, 0.2));
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-text .rezolute {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+
+        .logo-text .consulting {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--primary-purple);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            margin: 0;
+        }
+
+        nav a {
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-purple);
+            transition: width var(--transition-fast);
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-purple);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #fff;
+            transition: all var(--transition-fast);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ----- BREADCRUMB ----- */
+        .breadcrumb {
+            margin-top: 80px;
+            padding: 1rem 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(155, 77, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb .container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-purple);
+            transition: color var(--transition-fast);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-purple-light);
+        }
+
+        .breadcrumb span {
+            color: var(--text-secondary);
+        }
+
+        /* ----- PAGE HEADER (with education.jpg) ----- */
+        .page-header {
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 0;
+            background-image: url('assets/education.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(10, 10, 10, 0.65) 0%,
+                rgba(10, 10, 10, 0.45) 50%,
+                rgba(155, 77, 255, 0.12) 100%
+            );
+            z-index: 1;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(155, 77, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(155, 77, 255, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        @keyframes zoomIn {
+            from { background-size: 100%; }
+            to { background-size: 110%; }
+        }
+
+        .page-header {
+            animation: zoomIn 25s ease-in-out infinite alternate;
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--accent-purple-light);
+            font-weight: 500;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .industry-stat {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ----- SECTIONS (general) ----- */
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid rgba(155, 77, 255, 0.08);
+        }
+
+        .section-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--primary-purple);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .intro-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .intro-content p {
+            font-size: 1.1rem;
+        }
+
+        /* ----- FLEXBOX GRIDS (centered cards for threats, compliance, expertise, achievements) ----- */
+        .threats-grid,
+        .compliance-grid,
+        .expertise-grid,
+        .achievements-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Threat cards */
+        .threat-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-smooth);
+            flex: 0 1 300px;
+            min-width: 260px;
+            max-width: 340px;
+        }
+
+        .threat-card:hover {
+            border-color: var(--primary-purple);
+            background: rgba(30, 30, 30, 0.95);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(155, 77, 255, 0.15);
+        }
+
+        .threat-icon {
+            font-size: 2.5rem;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            transition: color var(--transition-fast);
+        }
+
+        .threat-card:hover .threat-icon {
+            color: var(--accent-purple-light);
+        }
+
+        .threat-card h3 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .threat-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Compliance cards */
+        .compliance-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-smooth);
+            flex: 0 1 300px;
+            min-width: 260px;
+            max-width: 340px;
+        }
+
+        .compliance-card:hover {
+            border-color: var(--primary-purple);
+            background: rgba(30, 30, 30, 0.95);
+            transform: translateY(-5px);
+        }
+
+        .compliance-name {
+            font-size: 1.3rem;
+            color: var(--primary-purple);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .compliance-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .compliance-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .feature-item {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .feature-item::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-purple);
+            font-weight: bold;
+        }
+
+        /* Achievement cards (benefit style) */
+        .achievement-card {
+            background: rgba(155, 77, 255, 0.05);
+            border: 1px solid rgba(155, 77, 255, 0.15);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-smooth);
+            flex: 0 1 280px;
+            min-width: 240px;
+            max-width: 320px;
+            text-align: center;
+        }
+
+        .achievement-card:hover {
+            background: rgba(155, 77, 255, 0.1);
+            border-color: var(--primary-purple);
+            transform: translateY(-5px);
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            transition: color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .achievement-card:hover .achievement-icon {
+            color: var(--accent-purple-light);
+            transform: scale(1.1);
+        }
+
+        .achievement-card h3 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 0.75rem;
+        }
+
+        .achievement-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ----- SERVICES SECTION (detailed) - original layout (grid for highlights) ----- */
+        .service-detail {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(155, 77, 255, 0.1);
+        }
+
+        .service-detail:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .service-detail h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .service-detail h3 i {
+            color: var(--primary-purple);
+        }
+
+        .service-detail p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .highlight-item {
+            background: rgba(155, 77, 255, 0.05);
+            border-left: 3px solid var(--primary-purple);
+            border-radius: 6px;
+            padding: 1rem;
+        }
+
+        .highlight-item strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Expertise tags (centered) */
+        .expertise-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .expertise-intro p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .cert-tag {
+            background: rgba(155, 77, 255, 0.1);
+            border: 1px solid rgba(155, 77, 255, 0.2);
+            border-radius: 30px;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+            transition: all var(--transition-fast);
+            flex: 0 1 auto;
+            white-space: nowrap;
+        }
+
+        .cert-tag:hover {
+            background: var(--primary-purple);
+            color: #fff;
+            border-color: var(--primary-purple);
+            transform: translateY(-2px);
+        }
+
+        /* ----- FINAL CTA ----- */
+        .final-cta {
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .final-cta h2 {
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta p {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* ----- FOOTER ----- */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 1px solid rgba(155, 77, 255, 0.1);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .footer-logo h3 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-size: 1.3rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .footer-logo p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(155, 77, 255, 0.1);
+            border: 1px solid rgba(155, 77, 255, 0.25);
+            border-radius: 50%;
+            color: var(--primary-purple);
+            transition: all var(--transition-fast);
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-purple);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(155, 77, 255, 0.3);
+        }
+
+        .copyright {
+            color: rgba(203, 213, 225, 0.4);
+            font-size: 0.85rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a,
+        .footer-contact a,
+        .footer-contact p {
+            color: var(--text-muted);
+            transition: color var(--transition-fast);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover,
+        .footer-contact a:hover {
+            color: var(--accent-purple-light);
+        }
+
+        .footer-contact p {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-contact-info {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(155, 77, 255, 0.1);
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 768px) {
+            html { font-size: 14px; }
+
+            .glassy-header { margin-top: 0; }
+
+            .header-container { padding: 0.8rem 0; }
+
+            .logo-text .rezolute { font-size: 1.4rem; }
+            .logo-text .consulting { font-size: 1.1rem; }
+            .logo img { height: 35px; }
+
+            nav ul {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(12px);
+                width: 100%;
+                text-align: center;
+                transition: left var(--transition-fast);
+                padding: 2.5rem 0;
+                gap: 1.5rem;
+                z-index: 999;
+            }
+
+            nav ul.active { left: 0; }
+
+            .hamburger { display: flex; }
+
+            .breadcrumb { margin-top: 70px; }
+
+            .page-header {
+                min-height: 350px;
+                padding: 3rem 0;
+            }
+
+            .page-header h1 { font-size: 2rem; }
+
+            section { padding: 4rem 0; }
+
+            .section-title { font-size: 2rem; }
+
+            .threat-card,
+            .compliance-card,
+            .cert-tag,
+            .achievement-card {
+                flex: 1 1 100%;
+                max-width: 400px;
+            }
+
+            .service-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .industry-stat {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cta-buttons { flex-direction: column; }
+
+            .btn { width: 100%; }
+
+            .footer-grid { gap: 2.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.3rem; }
+
+            .page-header {
+                min-height: 300px;
+                padding: 2rem 0;
+            }
+
+            .logo img { height: 30px; }
+            .logo-text .rezolute { font-size: 1.2rem; }
+            .logo-text .consulting { font-size: 1rem; }
+
+            nav ul { top: 65px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with split logo -->
+    <header class="glassy-header" id="mainHeader">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/Logo.png" alt="Rezolute Consulting">
+                <span class="logo-text">
+                    <span class="rezolute">Rezolute</span>
+                    <span class="consulting">Consulting</span>
+                </span>
+            </a>
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i>
+            <a href="industries.html">Industries</a> <i class="fas fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i>
+            <span>Education & Research</span>
+        </div>
+    </div>
+
+    <!-- Page Header with education.jpg -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Education & Research Security</h1>
+            <p>IP Protection & Student Data Security</p>
+            <div class="industry-stat">
+                <div class="stat-item">
+                    <span class="stat-number">1,000+</span>
+                    <span class="stat-label">educational institutions breached in 2024</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$2.5M</span>
+                    <span class="stat-label">average cost of a research IP theft incident</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="intro-content">
+                <p>Universities and research institutions store vast amounts of sensitive data: student records, financial information, and groundbreaking intellectual property. Open campus networks, bring‑your‑own‑device policies, and collaborative research environments create unique security challenges. Attackers target educational institutions for data theft, ransomware, and espionage.</p>
+                <p><strong>Rezolute specializes in protecting education and research with FERPA compliance, IP protection, and campus network security tailored to academic environments.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Threats -->
+    <section class="threats-section">
+        <div class="container">
+            <p class="section-subtitle">TOP THREATS TO EDUCATION & RESEARCH</p>
+            <h2 class="section-title">What's Targeting Your Industry</h2>
+            <div class="threats-grid">
+                <div class="threat-card">
+                    <div class="threat-icon"><i class="fas fa-flask"></i></div>
+                    <h3>Intellectual Property Theft</h3>
+                    <p>Nation‑state actors and competitors target research data, patents, and unpublished findings. Loss of IP can cost millions and destroy competitive advantage.</p>
+                </div>
+                <div class="threat-card">
+                    <div class="threat-icon"><i class="fas fa-user-graduate"></i></div>
+                    <h3>Student Data Breaches</h3>
+                    <p>Personal information, financial aid records, and academic histories are prime targets for identity theft and fraud. FERPA violations lead to loss of federal funding.</p>
+                </div>
+                <div class="threat-card">
+                    <div class="threat-icon"><i class="fas fa-virus"></i></div>
+                    <h3>Ransomware on Campus</h3>
+                    <p>Ransomware attacks encrypt student records, research data, and administrative systems, halting operations and demanding large payments from already‑stretched budgets.</p>
+                </div>
+                <div class="threat-card">
+                    <div class="threat-icon"><i class="fas fa-wifi"></i></div>
+                    <h3>Unsecured Campus Networks</h3>
+                    <p>Open Wi‑Fi, guest access, and thousands of personal devices create a sprawling attack surface. Lateral movement from compromised student devices is common.</p>
+                </div>
+                <div class="threat-card">
+                    <div class="threat-icon"><i class="fas fa-users"></i></div>
+                    <h3>Insider Threats & Accidental Exposure</h3>
+                    <p>Students, faculty, and staff may inadvertently expose sensitive data through misconfigured cloud storage or phishing. Insider threats are difficult to monitor.</p>
+                </div>
+                <div class="threat-card">
+                    <div class="threat-icon"><i class="fas fa-gavel"></i></div>
+                    <h3>Regulatory Compliance Gaps</h3>
+                    <p>Failure to meet FERPA, GDPR (for European students), or research grant security requirements can result in fines, loss of funding, and reputational damage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Section -->
+    <section class="compliance-section">
+        <div class="container">
+            <p class="section-subtitle">COMPLIANCE & REGULATORY LANDSCAPE</p>
+            <h2 class="section-title">Standards You Must Achieve</h2>
+            <div class="compliance-grid">
+                <div class="compliance-card">
+                    <div class="compliance-name">FERPA</div>
+                    <div class="compliance-description">Family Educational Rights and Privacy Act – protects the privacy of student education records and applies to all institutions receiving federal funds.</div>
+                    <div class="compliance-features">
+                        <div class="feature-item">Student record access controls</div>
+                        <div class="feature-item">Directory information management</div>
+                        <div class="feature-item">Annual notification requirements</div>
+                        <div class="feature-item">Data breach reporting procedures</div>
+                    </div>
+                </div>
+                <div class="compliance-card">
+                    <div class="compliance-name">GDPR / Data Privacy</div>
+                    <div class="compliance-description">EU data protection rules affecting institutions with European students, requiring strict controls on personal data processing and transfer.</div>
+                    <div class="compliance-features">
+                        <div class="feature-item">Lawful basis for processing</div>
+                        <div class="feature-item">Data subject rights (access, erasure)</div>
+                        <div class="feature-item">Cross‑border data transfers</div>
+                        <div class="feature-item">Breach notification (72 hours)</div>
+                    </div>
+                </div>
+                <div class="compliance-card">
+                    <div class="compliance-name">Research Grant Requirements</div>
+                    <div class="compliance-description">Federal and private research grants often mandate specific security controls (e.g., NIST 800‑171, CMMC) to protect controlled unclassified information.</div>
+                    <div class="compliance-features">
+                        <div class="feature-item">Controlled Unclassified Information (CUI) protection</div>
+                        <div class="feature-item">Incident reporting to sponsors</div>
+                        <div class="feature-item">Export control compliance (ITAR)</div>
+                        <div class="feature-item">Cybersecurity Maturity Model Certification (CMMC)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <p class="section-subtitle">HOW WE PROTECT EDUCATION & RESEARCH</p>
+            <h2 class="section-title">Our Academic Security Services</h2>
+
+            <div class="service-detail">
+                <h3><i class="fas fa-flask"></i> Research IP Protection</h3>
+                <p>We help research institutions safeguard intellectual property with data classification, access controls, and monitoring tailored to collaborative environments. Our solutions ensure that sensitive research data remains confidential while enabling authorised collaboration.</p>
+                <div class="service-highlights">
+                    <div class="highlight-item">
+                        <strong>Research Data Classification</strong>
+                        <p>Identify and label sensitive research data (CUI, ITAR, proprietary) with appropriate handling requirements.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <strong>Secure Collaboration Platforms</strong>
+                        <p>Implement encrypted file sharing and virtual research environments that protect IP during collaboration.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <strong>Export Control Compliance</strong>
+                        <p>Controls to prevent unauthorised access to ITAR/EAR‑controlled technical data by foreign nationals.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-detail">
+                <h3><i class="fas fa-user-graduate"></i> Student Data Privacy & FERPA Compliance</h3>
+                <p>We ensure your institution meets FERPA requirements with robust access controls, audit trails, and data protection measures. Our solutions help you manage directory information, respond to data subject requests, and demonstrate compliance.</p>
+                <div class="service-highlights">
+                    <div class="highlight-item">
+                        <strong>FERPA Gap Analysis</strong>
+                        <p>Comprehensive assessment of current controls against FERPA requirements with remediation roadmap.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <strong>Student Information System (SIS) Security</strong>
+                        <p>Hardening and monitoring of SIS platforms to prevent unauthorised access and data leaks.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <strong>Data Breach Response</strong>
+                        <p>Incident response procedures that satisfy FERPA breach notification requirements and minimise harm.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-detail">
+                <h3><i class="fas fa-wifi"></i> Campus Network & Endpoint Security</h3>
+                <p>University networks are notoriously open. We implement network segmentation, NAC (Network Access Control), and endpoint protection to contain threats and secure both wired and wireless infrastructure.</p>
+                <div class="service-highlights">
+                    <div class="highlight-item">
+                        <strong>Network Access Control (NAC)</strong>
+                        <p>Enforce security policies for all devices connecting to the campus network – student, faculty, guest, and IoT.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <strong>Wi‑Fi Security & Segmentation</strong>
+                        <p>Isolate guest traffic from internal networks and implement WPA3‑Enterprise with 802.1X authentication.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <strong>Endpoint Detection & Response (EDR)</strong>
+                        <p>Deploy EDR across university‑managed devices to detect and respond to threats in real time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-detail">
+                <h3><i class="fas fa-shield-alt"></i> Research Grant Security (CMMC / NIST 800-171)</h3>
+                <p>Many research grants now require compliance with NIST 800‑171 or CMMC. We help you implement the necessary security controls to protect Controlled Unclassified Information (CUI) and maintain eligibility for federal funding.</p>
+                <div class="service-highlights">
+                    <div class="highlight-item">
+                        <strong>NIST 800‑171 Assessment</strong>
+                        <p>Evaluate your environment against the 110 security requirements and develop a System Security Plan (SSP).</p>
+                    </div>
+                    <div class="highlight-item">
+                        <strong>CMMC Readiness</strong>
+                        <p>Prepare for CMMC certification at the appropriate level (L1–L3) with documented policies and technical controls.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <strong>CUI Data Management</strong>
+                        <p>Implement data‑loss prevention and access controls specifically for Controlled Unclassified Information.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Expertise -->
+    <section class="expertise-section">
+        <div class="container">
+            <p class="section-subtitle">TEAM EXPERTISE</p>
+            <h2 class="section-title">Academic Security Specialists</h2>
+            <div class="expertise-intro">
+                <p>Our team combines deep higher‑education experience with cybersecurity certifications, ensuring we understand the unique culture and challenges of academic institutions.</p>
+            </div>
+            <div class="expertise-grid">
+                <span class="cert-tag">FERPA Compliance Expert</span>
+                <span class="cert-tag">CISSP (Higher Education Focus)</span>
+                <span class="cert-tag">CISM</span>
+                <span class="cert-tag">NIST 800‑171 Specialist</span>
+                <span class="cert-tag">CMMC Registered Practitioner</span>
+                <span class="cert-tag">Research Data Security</span>
+                <span class="cert-tag">Campus Network Security</span>
+                <span class="cert-tag">ITAR/EAR Compliance</span>
+                <span class="cert-tag">GDPR / Student Privacy</span>
+                <span class="cert-tag">Incident Response (Education)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Achieve -->
+    <section class="metrics-section">
+        <div class="container">
+            <p class="section-subtitle">WHAT YOU'LL ACHIEVE</p>
+            <h2 class="section-title">Success Indicators</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>FERPA Compliance</h3>
+                    <p>Student records are protected with access controls and audit trails, meeting federal requirements.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>IP Security</h3>
+                    <p>Research data is classified and protected from theft, ensuring competitive advantage and grant compliance.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Network Resilience</h3>
+                    <p>Campus networks are segmented and monitored, preventing lateral movement from compromised devices.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Rapid Incident Response</h3>
+                    <p>Data breaches and ransomware are detected and contained in hours, minimising disruption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Protect Your Institution's Future Today</h2>
+            <p>FERPA compliance, research IP protection, and campus network security – we help universities and research centres build a security posture that enables innovation without risk.</p>
+            <div class="cta-buttons">
+                <a href="industries.html" class="btn btn-secondary">Explore Other Industries</a>
+                <a href="contact.html" class="btn btn-primary">Schedule Education Security Assessment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container footer-grid">
+            <div class="footer-logo">
+                <h3><img src="assets/Logo.png" alt="Rezolute Logo"><span>Rezolute Consulting</span></h3>
+                <p>Enterprise-grade cybersecurity consulting for organizations serious about security. Specialized. Proven. Trusted.</p>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="copyright">© 2026 Rezolute Consulting. All Rights Reserved.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Information</h4>
+                <p><a href="mailto:sales@rezoluteconsulting.com">sales@rezoluteconsulting.com</a></p>
+                <p><a href="mailto:tech@rezoluteconsulting.com">tech@rezoluteconsulting.com</a></p>
+                <div class="footer-contact-info">
+                    <p><strong>Address:</strong><br>16 CAC Street<br>Alapere, Lagos<br>Nigeria</p>
+                    <p style="margin-top: 1rem;"><strong>Response Time:</strong> 24 hours<br><strong>SLA:</strong> 99.9% uptime</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Header scroll hide/show
+        let lastScrollTop = 0;
+        const header = document.getElementById('mainHeader');
+        if (header) {
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.classList.add('header-hidden');
+                } else {
+                    header.classList.remove('header-hidden');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+        }
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+    </script>
+   
+</body>
+</html>

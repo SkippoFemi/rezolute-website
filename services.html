@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezolute Consulting - Cybersecurity Services</title>
+    <link rel="icon" type="image/png" href="assets/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ============================================================================
+           SERVICES PAGE - ENCAPSULATED STYLES (Purple Theme, Centered Cards)
+           ========================================================================== */
+
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* ----- CSS VARIABLES (Purple Only) ----- */
+        :root {
+            --primary-purple: #9b4dff;
+            --secondary-red: #ff4d4d;        /* kept for gradient buttons */
+            --accent-purple-light: #b47aff;
+            --dark-bg: #0a0a0a;
+            --dark-card: rgba(30, 30, 30, 0.8);
+            --border-light: rgba(255, 255, 255, 0.08);
+            --text-light: #ffffff;
+            --text-muted: #cbd5e1;
+            --text-secondary: #e2e8f0;
+            --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* ----- TYPOGRAPHY ----- */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 750;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--accent-purple-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ----- BUTTONS (same as homepage) ----- */
+        .btn {
+            padding: 0.95rem 2.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: inline-block;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #9b4dff, #ff4d4d);
+            color: #fff;
+            box-shadow: 0 10px 35px rgba(155, 77, 255, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 45px rgba(155, 77, 255, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid var(--primary-purple);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-purple);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2.5rem;
+        }
+
+        /* ----- HEADER with split logo (matches home/about) ----- */
+        .glassy-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(155, 77, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform var(--transition-fast);
+        }
+
+        .glassy-header.header-hidden {
+            transform: translateY(-100%);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: #fff;
+            transition: opacity var(--transition-fast);
+        }
+
+        .logo:hover {
+            opacity: 0.85;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 4px 8px rgba(155, 77, 255, 0.2));
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-text .rezolute {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+
+        .logo-text .consulting {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--primary-purple);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            margin: 0;
+        }
+
+        nav a {
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-purple);
+            transition: width var(--transition-fast);
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-purple);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #fff;
+            transition: all var(--transition-fast);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ----- PAGE HEADER (slideshow) ----- */
+        .page-header {
+            position: relative;
+            min-height: 500px;
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(10, 10, 10, 0.65) 0%,
+                rgba(10, 10, 10, 0.45) 50%,
+                rgba(155, 77, 255, 0.12) 100%
+            );
+            z-index: 1;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(155, 77, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(155, 77, 255, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        @keyframes zoomIn {
+            from { background-size: 100%; }
+            to { background-size: 110%; }
+        }
+
+        .page-header {
+            animation: zoomIn 25s ease-in-out infinite alternate;
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-header-subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 1rem auto 0;
+            color: var(--text-secondary);
+        }
+
+        .slideshow-prev,
+        .slideshow-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(155, 77, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(155, 77, 255, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .slideshow-prev:hover,
+        .slideshow-next:hover {
+            background: rgba(155, 77, 255, 0.3);
+            border-color: var(--primary-purple);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 10px 40px rgba(155, 77, 255, 0.3);
+        }
+
+        .slideshow-prev { left: 2.5rem; }
+        .slideshow-next { right: 2.5rem; }
+
+        /* ----- SECTIONS (general) ----- */
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid rgba(155, 77, 255, 0.08);
+        }
+
+        .section-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--primary-purple);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .intro-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .intro-content p {
+            font-size: 1.1rem;
+        }
+
+        /* ----- SERVICES OVERVIEW CARDS (8 core domains) ----- */
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-overview-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+            flex: 0 1 280px;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .service-overview-card:hover {
+            border-color: var(--primary-purple);
+            background: rgba(30, 30, 30, 0.95);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(155, 77, 255, 0.2);
+        }
+
+        .service-icon {
+            font-size: 2.8rem;
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+            transition: color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .service-overview-card:hover .service-icon {
+            color: var(--accent-purple-light);
+            transform: scale(1.15);
+        }
+
+        .service-overview-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .service-overview-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-cta {
+            color: var(--primary-purple);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: gap var(--transition-fast), color var(--transition-fast);
+            margin-top: auto;
+        }
+
+        .service-overview-card:hover .service-cta {
+            gap: 1rem;
+            color: var(--accent-purple-light);
+        }
+
+        /* ----- DETAILED SERVICES ----- */
+        .service-detail {
+            margin-top: 4rem;
+            padding: 2.5rem;
+            background: var(--dark-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-detail-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 0; /* will be handled by inner margins */
+        }
+
+        .service-detail-header > div:first-child {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .service-detail-header h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-highlights {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+            background: rgba(155, 77, 255, 0.05);
+            border: 1px solid rgba(155, 77, 255, 0.15);
+            border-radius: 10px;
+            padding: 1.2rem;
+            transition: all var(--transition-smooth);
+        }
+
+        .benefit-item:hover {
+            background: rgba(155, 77, 255, 0.1);
+            border-color: var(--primary-purple);
+        }
+
+        .benefit-icon {
+            font-size: 1.8rem;
+            color: var(--primary-purple);
+            transition: color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .benefit-item:hover .benefit-icon {
+            color: var(--accent-purple-light);
+            transform: scale(1.1);
+        }
+
+        .benefit-text strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+
+        .benefit-text p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .service-capabilities {
+            margin-top: 2rem; /* spacing when inside left column */
+        }
+
+        .service-capabilities h4 {
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Tech grid (for capabilities) */
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tech-item {
+            background: rgba(155, 77, 255, 0.1);
+            border: 1px solid rgba(155, 77, 255, 0.2);
+            border-radius: 30px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .tech-item:hover {
+            background: var(--primary-purple);
+            color: #fff;
+            border-color: var(--primary-purple);
+            transform: translateY(-2px);
+        }
+
+        /* ----- CARDS GRID (for methodology, engagement) ----- */
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cards-grid > .card {
+            flex: 0 1 300px;
+            min-width: 260px;
+        }
+
+        .card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(155, 77, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+        }
+
+        .card:hover {
+            border-color: var(--primary-purple);
+            background: rgba(30, 30, 30, 0.95);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(155, 77, 255, 0.2);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h3 {
+            position: relative;
+            z-index: 1;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .card h4 {
+            color: var(--primary-purple);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card li {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
+        }
+
+        /* Engagement cards (service-card style) */
+        .service-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary-purple);
+            background: rgba(30, 30, 30, 0.95);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(155, 77, 255, 0.15);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .service-card .section-subtitle {
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .service-card li {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
+        }
+
+        /* Engagement options: make cards wider (3 per row) */
+        .engagement-options .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .engagement-options .service-card {
+            flex: 0 1 340px;
+            max-width: 360px;
+        }
+
+        /* SLA cards (metrics) */
+        .sla-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: all var(--transition-smooth);
+            flex: 0 1 240px;
+            min-width: 200px;
+        }
+
+        .sla-card:hover {
+            border-color: var(--primary-purple);
+            background: rgba(30, 30, 30, 0.95);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(155, 77, 255, 0.15);
+        }
+
+        .sla-card .metric-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .sla-card .metric-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .metrics-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Industries grid (tech-item style) */
+        .industries-section .tech-grid {
+            gap: 1.2rem;
+        }
+
+        .industries-section .tech-item {
+            background: rgba(155, 77, 255, 0.08);
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        /* ----- FINAL CTA ----- */
+        .final-cta {
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .final-cta h2 {
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta p {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* ----- FOOTER ----- */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 1px solid rgba(155, 77, 255, 0.1);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .footer-logo h3 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-size: 1.3rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .footer-logo p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(155, 77, 255, 0.1);
+            border: 1px solid rgba(155, 77, 255, 0.25);
+            border-radius: 50%;
+            color: var(--primary-purple);
+            transition: all var(--transition-fast);
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-purple);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(155, 77, 255, 0.3);
+        }
+
+        .copyright {
+            color: rgba(203, 213, 225, 0.4);
+            font-size: 0.85rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a,
+        .footer-contact a,
+        .footer-contact p {
+            color: var(--text-muted);
+            transition: color var(--transition-fast);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover,
+        .footer-contact a:hover {
+            color: var(--accent-purple-light);
+        }
+
+        .footer-contact p {
+            margin-bottom: 0.8rem;
+        }
+
+        /* ----- MODAL ----- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--dark-card);
+            border: 1px solid var(--primary-purple);
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 900px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 25px 60px rgba(155, 77, 255, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(155, 77, 255, 0.2);
+            border: 1px solid var(--primary-purple);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-size: 1.2rem;
+        }
+
+        .modal-close:hover {
+            background: var(--primary-purple);
+            transform: scale(1.1);
+        }
+
+        .modal-body {
+            margin-top: 1rem;
+        }
+
+        /* Hide original detailed services on mobile if needed? No, we keep them. */
+        .body-blur #main-content {
+            filter: blur(5px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .engagement-options .service-card {
+                flex: 0 1 300px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .service-detail-header {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html { font-size: 14px; }
+
+            .glassy-header { margin-top: 0; }
+
+            .header-container { padding: 0.8rem 0; }
+
+            .logo-text .rezolute { font-size: 1.4rem; }
+            .logo-text .consulting { font-size: 1.1rem; }
+            .logo img { height: 35px; }
+
+            nav ul {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(12px);
+                width: 100%;
+                text-align: center;
+                transition: left var(--transition-fast);
+                padding: 2.5rem 0;
+                gap: 1.5rem;
+                z-index: 999;
+            }
+
+            nav ul.active { left: 0; }
+
+            .hamburger { display: flex; }
+
+            .page-header {
+                margin-top: 70px;
+                min-height: 350px;
+                padding: 3rem 0;
+            }
+
+            .page-header h1 { font-size: 2rem; }
+
+            section { padding: 4rem 0; }
+
+            .section-title { font-size: 2rem; }
+
+            .cards-grid,
+            .services-grid,
+            .metrics-grid {
+                justify-content: center;
+            }
+
+            .service-overview-card,
+            .engagement-options .service-card,
+            .cards-grid > .card,
+            .sla-card {
+                flex: 1 1 100%;
+                max-width: 400px;
+            }
+
+            .service-detail {
+                padding: 1.5rem;
+            }
+
+            .tech-item {
+                white-space: normal;
+                text-align: center;
+            }
+
+            .slideshow-prev,
+            .slideshow-next {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            .footer-grid { gap: 2.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.3rem; }
+
+            .page-header {
+                margin-top: 65px;
+                min-height: 300px;
+                padding: 2rem 0;
+            }
+
+            .logo img { height: 30px; }
+            .logo-text .rezolute { font-size: 1.2rem; }
+            .logo-text .consulting { font-size: 1rem; }
+
+            nav ul { top: 65px; }
+
+            .service-detail {
+                padding: 1.2rem;
+            }
+
+            .benefit-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with split logo -->
+    <header class="glassy-header" id="mainHeader">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/Logo.png" alt="Rezolute Consulting">
+                <span class="logo-text">
+                    <span class="rezolute">Rezolute</span>
+                    <span class="consulting">Consulting</span>
+                </span>
+            </a>
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="contact.html">Contact</a></li>  <!-- updated link -->
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content wrapper for blur effect -->
+    <div id="main-content">
+        <!-- Page Header with Background Slideshow (matches home/about) -->
+        <section class="page-header slideshow-section" id="servicesHeader" data-images='["assets/services_1.jpg","assets/services_2.png"]'>
+            <div class="container">
+                <h1>Core Service Domains</h1>
+                <p class="page-header-subtitle">From assessment to implementation, governance to response—we deliver security excellence across every domain</p>
+            </div>
+            <button class="slideshow-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="slideshow-next"><i class="fas fa-chevron-right"></i></button>
+        </section>
+
+        <!-- Services Intro -->
+        <section class="intro-section">
+            <div class="container">
+                <div class="intro-content">
+                    <p>Every organization faces evolving security threats. We don't just respond to them—we architect your resilience. Our services span the entire security lifecycle, from identifying vulnerabilities to implementing robust defenses, establishing governance, and responding to incidents.</p>
+                    <p><strong>Whether you need a single assessment or a comprehensive transformation, we have the expertise to deliver.</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Overview Grid -->
+        <section class="services-grid-section">
+            <div class="container">
+                <p class="section-subtitle">8 CORE SERVICE DOMAINS</p>
+                <h2 class="section-title">What We Deliver</h2>
+                <div class="services-grid">
+                    <div class="service-overview-card" data-service="cloud">
+                        <div class="service-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                        <h3>Cloud Security</h3>
+                        <p>Securing AWS, Azure, GCP, and hybrid environments with unified visibility, automated scalability, and misconfiguration prevention.</p>
+                        <div class="service-cta">Learn more <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                    <div class="service-overview-card" data-service="app">
+                        <div class="service-icon"><i class="fas fa-code"></i></div>
+                        <h3>Application Security</h3>
+                        <p>WAF, SAST/DAST, DevSecOps integration, and secure coding practices. Find and fix vulnerabilities before production.</p>
+                        <div class="service-cta">Learn more <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                    <div class="service-overview-card" data-service="network">
+                        <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+                        <h3>Network Security</h3>
+                        <p>Firewall, IDS/IPS, VPN, and secure network architecture. The first line of defense against unauthorized access.</p>
+                        <div class="service-cta">Learn more <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                    <div class="service-overview-card" data-service="system">
+                        <div class="service-icon"><i class="fas fa-desktop"></i></div>
+                        <h3>System Security</h3>
+                        <p>Server, endpoint, and OS hardening. Lock down every device with standardized, Gold Standard configurations.</p>
+                        <div class="service-cta">Learn more <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                    <div class="service-overview-card" data-service="data">
+                        <div class="service-icon"><i class="fas fa-database"></i></div>
+                        <h3>Data Security</h3>
+                        <p>Classification, encryption, and DLP. Protect your most valuable asset from theft, misuse, and unauthorized exposure.</p>
+                        <div class="service-cta">Learn more <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                    <div class="service-overview-card" data-service="iam">
+                        <div class="service-icon"><i class="fas fa-id-card"></i></div>
+                        <h3>Identity & Access Management</h3>
+                        <p>SSO, MFA, PAM, and identity governance. Ensure the right people have the right access at the right time.</p>
+                        <div class="service-cta">Learn more <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                    <div class="service-overview-card" data-service="secops">
+                        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Security Operations</h3>
+                        <p>SIEM integration, SOC support, and incident response. 24/7 monitoring and rapid threat containment.</p>
+                        <div class="service-cta">Learn more <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                    <div class="service-overview-card" data-service="vapt">
+                        <div class="service-icon"><i class="fas fa-search"></i></div>
+                        <h3>Security Assessment & VAPT</h3>
+                        <p>Vulnerability assessments and penetration testing. Identify and remediate weaknesses before malicious actors do.</p>
+                        <div class="service-cta">Learn more <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Services (hidden initially but used for modal content) -->
+        <section class="detailed-services" style="display: none;">
+            <div class="container">
+                <p class="section-subtitle">DEEP TECHNICAL EXPERTISE</p>
+                <h2 class="section-title">Service Details</h2>
+
+                <!-- Cloud Security Detail -->
+                <div class="service-detail" id="cloud-detail">
+                    <div class="service-detail-header">
+                        <div>
+                            <h3>Cloud Security</h3>
+                            <p>As businesses migrate to the cloud, traditional perimeters vanish. We implement security controls across public and private infrastructures to protect data, applications, and virtualized servers across AWS, Azure, and GCP.</p>
+                            <!-- Core Capabilities moved here -->
+                            <div class="service-capabilities">
+                                <h4>Core Capabilities</h4>
+                                <div class="tech-grid">
+                                    <span class="tech-item">AWS Security</span>
+                                    <span class="tech-item">Azure Defender</span>
+                                    <span class="tech-item">GCP KMS</span>
+                                    <span class="tech-item">Multi-Cloud</span>
+                                    <span class="tech-item">VPC Config</span>
+                                    <span class="tech-item">Identity Provider</span>
+                                    <span class="tech-item">Compliance</span>
+                                    <span class="tech-item">Incident Response</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-highlights">
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-eye"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Unified Visibility</strong>
+                                    <p>Gain a "single pane of glass" across multi-cloud environments, eliminating blind spots</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-sync-alt"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Automated Scalability</strong>
+                                    <p>Security policies automatically expand or contract alongside your cloud footprint</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-ban"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Misconfiguration Prevention</strong>
+                                    <p>Continuous monitoring to instantly close leaky buckets and open ports</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- No separate service-capabilities here -->
+                </div>
+
+                <!-- Application Security Detail -->
+                <div class="service-detail" id="app-detail">
+                    <div class="service-detail-header">
+                        <div>
+                            <h3>Application Security</h3>
+                            <p>Applications are the primary target for modern hackers. We integrate security into the Software Development Lifecycle (SDLC) to find and fix vulnerabilities before they reach production.</p>
+                            <div class="service-capabilities">
+                                <h4>Core Capabilities</h4>
+                                <div class="tech-grid">
+                                    <span class="tech-item">SAST</span>
+                                    <span class="tech-item">DAST</span>
+                                    <span class="tech-item">WAF Config</span>
+                                    <span class="tech-item">DevSecOps</span>
+                                    <span class="tech-item">OWASP Testing</span>
+                                    <span class="tech-item">Code Review</span>
+                                    <span class="tech-item">Penetration Test</span>
+                                    <span class="tech-item">API Security</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-highlights">
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-dollar-sign"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Cost Efficiency</strong>
+                                    <p>Identifying vulnerabilities during development costs significantly less than remediating live breaches</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-rocket"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Accelerated Time-to-Market</strong>
+                                    <p>DevSecOps ensures security is a fast lane, not a roadblock to deployment</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Proactive Defense</strong>
+                                    <p>WAF and secure coding protect against OWASP Top 10 threats immediately</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Security Detail -->
+                <div class="service-detail" id="network-detail">
+                    <div class="service-detail-header">
+                        <div>
+                            <h3>Network Security</h3>
+                            <p>Serving as the first line of defense, we monitor and control traffic to prevent unauthorized access and maintain service availability with firewalls, IDS/IPS, and secure VPN architectures.</p>
+                            <div class="service-capabilities">
+                                <h4>Core Capabilities</h4>
+                                <div class="tech-grid">
+                                    <span class="tech-item">Firewall Mgmt</span>
+                                    <span class="tech-item">IDS/IPS</span>
+                                    <span class="tech-item">VPN Config</span>
+                                    <span class="tech-item">NAC</span>
+                                    <span class="tech-item">Network Arch</span>
+                                    <span class="tech-item">Traffic Analysis</span>
+                                    <span class="tech-item">Threat Detection</span>
+                                    <span class="tech-item">Policy Mgmt</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-highlights">
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-virus"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Intrusion Prevention</strong>
+                                    <p>Blocks known and emerging malicious actors before network penetration</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-lock"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Secure Work-from-Anywhere</strong>
+                                    <p>High-performance encrypted VPNs keep workforces productive and secure</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-cubes"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Network Segmentation</strong>
+                                    <p>Prevents lateral movement within internal systems, containing breaches</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Security Detail -->
+                <div class="service-detail" id="system-detail">
+                    <div class="service-detail-header">
+                        <div>
+                            <h3>System Security</h3>
+                            <p>In a hybrid-work era, the endpoint is the new perimeter. We securely lock down every device—laptops, servers, mobile devices, BYOD—that employees use daily.</p>
+                            <div class="service-capabilities">
+                                <h4>Core Capabilities</h4>
+                                <div class="tech-grid">
+                                    <span class="tech-item">OS Hardening</span>
+                                    <span class="tech-item">Endpoint Mgmt</span>
+                                    <span class="tech-item">BIOS Security</span>
+                                    <span class="tech-item">Patch Mgmt</span>
+                                    <span class="tech-item">EDR</span>
+                                    <span class="tech-item">Compliance Check</span>
+                                    <span class="tech-item">Asset Inventory</span>
+                                    <span class="tech-item">Configuration Audit</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-highlights">
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Standardized Configuration</strong>
+                                    <p>Every device meets a uniform security "Gold Standard" across your organization</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-bug"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Malware Immunity</strong>
+                                    <p>Advanced endpoint protection prevents malicious code execution</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-clipboard-list"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Asset Accountability</strong>
+                                    <p>Clear tracking and security health-monitoring of all endpoints</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Security Detail -->
+                <div class="service-detail" id="data-detail">
+                    <div class="service-detail-header">
+                        <div>
+                            <h3>Data Security</h3>
+                            <p>Data is your most valuable asset. We identify sensitive information and implement safeguards to prevent its theft, misuse, or unauthorized exposure.</p>
+                            <div class="service-capabilities">
+                                <h4>Core Capabilities</h4>
+                                <div class="tech-grid">
+                                    <span class="tech-item">Classification</span>
+                                    <span class="tech-item">Encryption</span>
+                                    <span class="tech-item">DLP</span>
+                                    <span class="tech-item">Data Discovery</span>
+                                    <span class="tech-item">Privacy Mgmt</span>
+                                    <span class="tech-item">GDPR Ready</span>
+                                    <span class="tech-item">Database Security</span>
+                                    <span class="tech-item">Audit Trail</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-highlights">
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-globe"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Data Sovereignty</strong>
+                                    <p>Ensure sensitive corporate secrets and customer PII never leave unauthorized channels</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-key"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Breach Neutralization</strong>
+                                    <p>Strong encryption ensures stolen data remains unreadable and useless</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-search"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Automated Discovery</strong>
+                                    <p>Automatically find and classify hidden sensitive data across your digital estate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Identity & Access Management Detail -->
+                <div class="service-detail" id="iam-detail">
+                    <div class="service-detail-header">
+                        <div>
+                            <h3>Identity & Access Management</h3>
+                            <p>Identity is the cornerstone of modern security. We ensure that only the right people have the right access to the right resources at the right time.</p>
+                            <div class="service-capabilities">
+                                <h4>Core Capabilities</h4>
+                                <div class="tech-grid">
+                                    <span class="tech-item">SSO</span>
+                                    <span class="tech-item">MFA</span>
+                                    <span class="tech-item">PAM</span>
+                                    <span class="tech-item">RBAC</span>
+                                    <span class="tech-item">SAML</span>
+                                    <span class="tech-item">OAuth</span>
+                                    <span class="tech-item">Provisioning</span>
+                                    <span class="tech-item">Access Review</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-highlights">
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-lock"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Elimination of Credential Risk</strong>
+                                    <p>MFA and SSO neutralize stolen passwords, which account for 80% of breaches</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-users-cog"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Simplified User Lifecycle</strong>
+                                    <p>Automate access granting for new hires and instant revocation for departing employees</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-smile"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Frictionless Productivity</strong>
+                                    <p>One secure login reduces password fatigue and helpdesk tickets</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Operations Detail -->
+                <div class="service-detail" id="secops-detail">
+                    <div class="service-detail-header">
+                        <div>
+                            <h3>Security Operations</h3>
+                            <p>It's not a matter of if you will be attacked, but when. We provide 24/7 monitoring and rapid response to ensure your organization fights back and recovers quickly.</p>
+                            <div class="service-capabilities">
+                                <h4>Core Capabilities</h4>
+                                <div class="tech-grid">
+                                    <span class="tech-item">SIEM</span>
+                                    <span class="tech-item">SOC Support</span>
+                                    <span class="tech-item">Incident Response</span>
+                                    <span class="tech-item">Threat Hunting</span>
+                                    <span class="tech-item">Log Analysis</span>
+                                    <span class="tech-item">Playbook Dev</span>
+                                    <span class="tech-item">Forensics</span>
+                                    <span class="tech-item">Recovery Plan</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-highlights">
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-clock"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Reduced Dwell Time</strong>
+                                    <p>Real-time SIEM alerts catch intruders in minutes, not months</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-first-aid"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Expert Incident Response</strong>
+                                    <p>Specialized teams contain threats and minimize business disruption</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Continuous Improvement</strong>
+                                    <p>Post-incident analysis strengthens defenses against similar attacks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Assessment & VAPT Detail -->
+                <div class="service-detail" id="vapt-detail">
+                    <div class="service-detail-header">
+                        <div>
+                            <h3>Security Assessment & VAPT</h3>
+                            <p>Defense is only effective if it is tested. We simulate real-world attacks to identify and remediate weaknesses before malicious actors find them.</p>
+                            <div class="service-capabilities">
+                                <h4>Core Capabilities</h4>
+                                <div class="tech-grid">
+                                    <span class="tech-item">VA/PT</span>
+                                    <span class="tech-item">Scoping</span>
+                                    <span class="tech-item">Reporting</span>
+                                    <span class="tech-item">Remediation</span>
+                                    <span class="tech-item">Retesting</span>
+                                    <span class="tech-item">Social Eng</span>
+                                    <span class="tech-item">Gap Analysis</span>
+                                    <span class="tech-item">Roadmap</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-highlights">
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-check-square"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Evidence-Based Security</strong>
+                                    <p>Technical reports prove exactly where defenses are weak and how to fix them</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-arrows-alt-v"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Prioritized Remediation</strong>
+                                    <p>Categorized by risk level, you focus on critical open doors first</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="fas fa-award"></i></div>
+                                <div class="benefit-text">
+                                    <strong>Stakeholder Confidence</strong>
+                                    <p>Proof that infrastructure has been rigorously battle-tested</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Methodology -->
+        <section class="implementation-section">
+            <div class="container">
+                <p class="section-subtitle">4-PHASE NIST CYBERSECURITY FRAMEWORK</p>
+                <h2 class="section-title">Our Proven Implementation Methodology</h2>
+                <p style="text-align: center; max-width: 900px; margin: 0 auto 3rem; color: var(--text-secondary);">We follow a comprehensive, systematic approach based on the NIST Cybersecurity Framework to ensure measurable progress toward enterprise resilience.</p>
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>Phase I: Identify</h3>
+                        <h4 style="color: var(--primary-purple);">Discovery & Assessment</h4>
+                        <ul>
+                            <li><strong style="color: #fff;">VAPT:</strong> Proactive Vulnerability Assessments & Penetration Testing</li>
+                            <li><strong style="color: #fff;">Gap Analysis:</strong> Current state vs. ISO 27001 & NIST frameworks</li>
+                            <li><strong style="color: #fff;">Data Mapping:</strong> Identify sensitive data for compliance</li>
+                            <li><strong style="color: #fff;">Asset Inventory:</strong> Complete visibility into security posture</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Phase II: Protect</h3>
+                        <h4 style="color: var(--primary-purple);">Architecture & Hardening</h4>
+                        <ul>
+                            <li><strong style="color: #fff;">Cloud & Network:</strong> Secure VPCs, Firewalls, VPNs</li>
+                            <li><strong style="color: #fff;">Identity:</strong> MFA, SSO, PAM deployment</li>
+                            <li><strong style="color: #fff;">System Hardening:</strong> Gold Standard configurations</li>
+                            <li><strong style="color: #fff;">Data Protection:</strong> Classification, encryption, DLP</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Phase III: Detect & Respond</h3>
+                        <h4 style="color: var(--primary-purple);">Secure Development & Ops</h4>
+                        <ul>
+                            <li><strong style="color: #fff;">DevSecOps:</strong> SAST/DAST in development pipeline</li>
+                            <li><strong style="color: #fff;">SecOps:</strong> SIEM integration & SOC support</li>
+                            <li><strong style="color: #fff;">Incident Response:</strong> Protocols to contain threats</li>
+                            <li><strong style="color: #fff;">Training:</strong> Team upskilling in secure practices</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Phase IV: Recover & Govern</h3>
+                        <h4 style="color: var(--primary-purple);">Governance & Resilience</h4>
+                        <ul>
+                            <li><strong style="color: #fff;">Business Continuity:</strong> ISO 22301 BCMS</li>
+                            <li><strong style="color: #fff;">Security Management:</strong> ISO 27001 ISMS</li>
+                            <li><strong style="color: #fff;">PCI DSS:</strong> Payment card security</li>
+                            <li><strong style="color: #fff;">Continuous Monitoring:</strong> Ongoing optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Engagement Options -->
+        <section class="engagement-options">
+            <div class="container">
+                <p class="section-subtitle">FLEXIBLE PARTNERSHIP MODELS</p>
+                <h2 class="section-title">Choose Your Engagement</h2>
+                <p style="text-align: center; max-width: 900px; margin: 0 auto 3rem; color: var(--text-secondary);">We offer multiple engagement models to fit your needs, from project-based assessments to ongoing strategic partnerships.</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Project-Based</h3>
+                        <p class="section-subtitle" style="margin-bottom:1rem;">For Defined Initiatives</p>
+                        <p>Perfect for specific security initiatives with defined scope, timeline, and deliverables.</p>
+                        <div style="margin-top:1.5rem;">
+                            <h4 style="color: var(--primary-purple);">Includes</h4>
+                            <ul>
+                                <li>→ Security assessments & VAPT</li>
+                                <li>→ Compliance implementation</li>
+                                <li>→ Architecture design & deployment</li>
+                                <li>→ Security transformation projects</li>
+                                <li>→ Digital transformation support</li>
+                            </ul>
+                        </div>
+                        <p style="margin-top:1rem;"><strong>Best for:</strong> One-time assessments, implementations, migrations</p>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>6-Month Retainer</h3>
+                        <p class="section-subtitle" style="margin-bottom:1rem;">Quarterly Strategic Updates</p>
+                        <p>Sustained partnership with quarterly business reviews and strategic guidance on evolving threats.</p>
+                        <div style="margin-top:1.5rem;">
+                            <h4 style="color: var(--primary-purple);">Includes</h4>
+                            <ul>
+                                <li>→ Quarterly strategic reviews</li>
+                                <li>→ Ongoing support & monitoring</li>
+                                <li>→ Priority access to specialists</li>
+                                <li>→ Proactive threat management</li>
+                                <li>→ Monthly reporting</li>
+                            </ul>
+                        </div>
+                        <p style="margin-top:1rem;"><strong>Best for:</strong> Ongoing needs, strategic partnerships</p>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>Annual Retainer</h3>
+                        <p class="section-subtitle" style="margin-bottom:1rem;">Continuous Support & Optimization</p>
+                        <p>Comprehensive partnership with continuous monitoring, optimization, and 24/7 support access.</p>
+                        <div style="margin-top:1.5rem;">
+                            <h4 style="color: var(--primary-purple);">Includes</h4>
+                            <ul>
+                                <li>→ 24/7 expert support</li>
+                                <li>→ Continuous optimization</li>
+                                <li>→ Unlimited consultations</li>
+                                <li>→ Priority incident response</li>
+                                <li>→ Strategic architecture guidance</li>
+                            </ul>
+                        </div>
+                        <p style="margin-top:1rem;"><strong>Best for:</strong> Long-term partnerships, critical systems</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support & SLA -->
+        <section class="support-sla">
+            <div class="container">
+                <p class="section-subtitle">COMMITMENT TO EXCELLENCE</p>
+                <h2 class="section-title">Support & Service Levels</h2>
+                <p style="text-align: center; max-width: 900px; margin: 0 auto 3rem; color: var(--text-secondary);">We back our services with strong SLAs and a tiered support structure designed to minimize your risk and downtime.</p>
+                <div class="metrics-grid">
+                    <div class="sla-card">
+                        <div class="metric-number">24<span style="font-size: 1.2rem;">h</span></div>
+                        <div class="metric-label">Initial Response Time<br>for All Incidents</div>
+                    </div>
+                    <div class="sla-card">
+                        <div class="metric-number">99.9<span style="font-size: 1.2rem;">%</span></div>
+                        <div class="metric-label">Uptime & Service<br>Availability Commitment</div>
+                    </div>
+                    <div class="sla-card">
+                        <div class="metric-number">L1–L3</div>
+                        <div class="metric-label">Full Technical Stack<br>Support Coverage</div>
+                    </div>
+                    <div class="sla-card">
+                        <div class="metric-number">Remote +<br>Onsite</div>
+                        <div class="metric-label">Flexible Delivery<br>When Needed</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industries We Serve -->
+        <section class="industries-section">
+            <div class="container">
+                <p class="section-subtitle">WHO WE SERVE</p>
+                <h2 class="section-title">Industries & Sectors</h2>
+                <p style="text-align: center; max-width: 900px; margin: 0 auto 2rem; color: var(--text-secondary);">Rezolute partners with organizations across multiple sectors who recognize the value of specialized security expertise.</p>
+                <div class="tech-grid">
+                    <span class="tech-item">🏦 Financial Services</span>
+                    <span class="tech-item">💳 Fintech & Payment</span>
+                    <span class="tech-item">📱 App Development</span>
+                    <span class="tech-item">☁️ Cloud & SaaS</span>
+                    <span class="tech-item">🏥 Healthcare</span>
+                    <span class="tech-item">🛍️ E-Commerce</span>
+                    <span class="tech-item">📡 Telecommunications</span>
+                    <span class="tech-item">🏢 Enterprise</span>
+                    <span class="tech-item">🎓 Education</span>
+                    <span class="tech-item">⚡ Energy & Utilities</span>
+                    <span class="tech-item">🏗️ Infrastructure</span>
+                    <span class="tech-item">🤝 Consulting Firms</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <h2>Ready to Transform Your Security Posture?</h2>
+                <p>Whether you need a single assessment, full-scale implementation, or ongoing strategic partnership—we're ready to help you build enterprise-grade security that scales with your business.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">Schedule a Consultation</a>  <!-- updated link -->
+                    <a href="about.html" class="btn btn-secondary">Learn More About Us</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="serviceModal">
+        <div class="modal-content">
+            <div class="modal-close" id="modalClose"><i class="fas fa-times"></i></div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container footer-grid">
+            <div class="footer-logo">
+                <h3><img src="assets/Logo.png" alt="Rezolute Logo"><span>Rezolute Consulting</span></h3>
+                <p>Enterprise-grade cybersecurity consulting for organizations serious about security. Specialized. Proven. Trusted.</p>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="copyright">© 2026 Rezolute Consulting. All Rights Reserved.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="contact.html">Contact</a></li>  <!-- updated link -->
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Information</h4>
+                <p><a href="mailto:sales@rezoluteconsulting.com">sales@rezoluteconsulting.com</a></p>  <!-- fixed -->
+                <p><a href="mailto:tech@rezoluteconsulting.com">tech@rezoluteconsulting.com</a></p>    <!-- fixed -->
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(155, 77, 255, 0.1);">
+                    <p><strong>Address:</strong><br>16 CAC Street<br>Alapere, Lagos<br>Nigeria</p>
+                    <p style="margin-top: 1rem;"><strong>Response Time:</strong> 24 hours<br><strong>SLA:</strong> 99.9% uptime</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Header scroll hide/show
+        let lastScrollTop = 0;
+        const header = document.getElementById('mainHeader');
+        if (header) {
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.classList.add('header-hidden');
+                } else {
+                    header.classList.remove('header-hidden');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+        }
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // Background Slideshow
+        (function() {
+            const section = document.getElementById('servicesHeader');
+            if (!section) return;
+
+            const imagesAttr = section.dataset.images;
+            if (!imagesAttr) return;
+
+            const images = JSON.parse(imagesAttr);
+            let currentIndex = 0;
+
+            section.style.backgroundImage = `url('${images[0]}')`;
+            section.style.transition = 'background-image 1s ease-in-out';
+
+            let interval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % images.length;
+                section.style.backgroundImage = `url('${images[currentIndex]}')`;
+            }, 10000);
+
+            const prevBtn = section.querySelector('.slideshow-prev');
+            const nextBtn = section.querySelector('.slideshow-next');
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    clearInterval(interval);
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    section.style.backgroundImage = `url('${images[currentIndex]}')`;
+                    interval = setInterval(() => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        section.style.backgroundImage = `url('${images[currentIndex]}')`;
+                    }, 10000);
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    clearInterval(interval);
+                    currentIndex = (currentIndex + 1) % images.length;
+                    section.style.backgroundImage = `url('${images[currentIndex]}')`;
+                    interval = setInterval(() => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        section.style.backgroundImage = `url('${images[currentIndex]}')`;
+                    }, 10000);
+                });
+            }
+        })();
+
+        // Modal functionality
+        const modal = document.getElementById('serviceModal');
+        const modalBody = document.getElementById('modalBody');
+        const modalClose = document.getElementById('modalClose');
+        const mainContent = document.getElementById('main-content');
+
+        // Mapping of data-service to detail element ID
+        const serviceMap = {
+            'cloud': 'cloud-detail',
+            'app': 'app-detail',
+            'network': 'network-detail',
+            'system': 'system-detail',
+            'data': 'data-detail',
+            'iam': 'iam-detail',
+            'secops': 'secops-detail',
+            'vapt': 'vapt-detail'
+        };
+
+        document.querySelectorAll('.service-overview-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const service = this.dataset.service;
+                const detailId = serviceMap[service];
+                if (detailId) {
+                    const detailElement = document.getElementById(detailId);
+                    if (detailElement) {
+                        // Clone the detail content (deep clone)
+                        const clone = detailElement.cloneNode(true);
+                        // Remove any existing IDs to avoid duplicates
+                        clone.removeAttribute('id');
+                        modalBody.innerHTML = '';
+                        modalBody.appendChild(clone);
+                        // Open modal
+                        modal.classList.add('active');
+                        document.body.classList.add('modal-open');
+                        mainContent.classList.add('body-blur');
+                    }
+                }
+            });
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+            mainContent.classList.remove('body-blur');
+        }
+
+        modalClose.addEventListener('click', closeModal);
+
+        // Click outside modal to close
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
+    <!-- Removed Cloudflare email decode script -->
+</body>
+</html>
