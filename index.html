@@ -165,6 +165,51 @@
             justify-content: center;
         }
 
+        /* ----- PHONE CTA (new) ----- */
+        .phone-cta {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+            background: rgba(155, 77, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            border: 1px solid rgba(155, 77, 255, 0.3);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .phone-cta i {
+            color: var(--primary-purple);
+            font-size: 1.4rem;
+        }
+
+        .phone-cta .numbers {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .phone-cta .numbers a {
+            color: #fff;
+            font-weight: 600;
+            transition: color var(--transition-fast);
+        }
+
+        .phone-cta .numbers a:hover {
+            color: var(--accent-purple-light);
+        }
+
+        .phone-cta .prompt {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
         /* ----- INVISIBLE HEADER (fixed, hides on scroll) ----- */
         .invisible-header {
             position: fixed;
@@ -264,7 +309,7 @@
             padding: 0;
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat; /* Prevents tiling */
+            background-repeat: no-repeat;
             background-attachment: fixed;
             overflow: hidden;
             isolation: isolate;
@@ -844,12 +889,12 @@
 
             .hamburger { display: flex; }
 
-            /* Reduce hero height for mobile */
+            /* Increase hero height for mobile (approx double original) */
             .hero {
-                min-height: 60vh;  /* reduced from 80vh */
+                min-height: 90vh;  /* increased from 60vh */
                 padding-top: 70px;
-                animation: none;    /* Disable zoom animation on mobile */
-                background-size: cover; /* Ensure full coverage */
+                animation: none;
+                background-size: cover;
                 background-position: center;
             }
 
@@ -892,6 +937,20 @@
             .slideshow-prev,
             .slideshow-next {
                 display: none;
+            }
+
+            /* Phone CTA adjustments for mobile */
+            .phone-cta {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem 1.5rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .phone-cta .numbers {
+                justify-content: center;
+                gap: 1rem;
             }
 
             section {
@@ -1032,7 +1091,7 @@
             }
 
             .hero {
-                min-height: 50vh;  /* further reduced for very small screens */
+                min-height: 80vh;  /* increased from 50vh */
                 padding-top: 65px;
             }
 
@@ -1077,6 +1136,15 @@
             .btn {
                 padding: 0.85rem 1.5rem;
                 font-size: 0.9rem;
+            }
+
+            .phone-cta {
+                font-size: 1rem;
+            }
+
+            .phone-cta .numbers {
+                flex-direction: column;
+                gap: 0.5rem;
             }
 
             section {
@@ -1179,6 +1247,16 @@
             <div class="cta-buttons">
                 <a href="services.html" class="btn btn-primary">Explore Our Services</a>
                 <a href="industries.html" class="btn btn-secondary">Find Your Industry</a>
+            </div>
+
+            <!-- Phone CTA -->
+            <div class="phone-cta">
+                <i class="fas fa-phone-alt"></i>
+                <span class="prompt">Speak with an expert today:</span>
+                <span class="numbers">
+                    <a href="tel:+2348169992067">+234 816 999 2067</a>
+                    <a href="tel:+2349158443375">+234 915 844 3375</a>
+                </span>
             </div>
         </div>
         <button class="slideshow-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
@@ -1443,8 +1521,6 @@
             canvas.width = canvas.height = 1;
             const supportsWebP = canvas.toDataURL('image/webp').startsWith('data:image/webp');
 
-            // If WebP is supported, use images as-is; otherwise, we still use them (no fallback)
-            // (This avoids 404s since only WebP files exist)
             function setBackgroundImage(index) {
                 section.style.backgroundImage = `url('${images[index]}')`;
             }
