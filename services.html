@@ -269,7 +269,7 @@
             transform: rotate(-45deg) translate(7px, -7px);
         }
 
-        /* ----- PAGE HEADER (slideshow) ----- */
+        /* ----- PAGE HEADER (slideshow) - WebP only, tiling fix ----- */
         .page-header {
             position: relative;
             min-height: 500px;
@@ -280,9 +280,12 @@
             padding: 5rem 0;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat; /* prevents tiling */
             background-attachment: fixed;
             overflow: hidden;
             isolation: isolate;
+            transition: background-image 0.8s ease-in-out;
+            animation: zoomIn 25s ease-in-out infinite alternate;
         }
 
         .page-header::before {
@@ -311,10 +314,6 @@
         @keyframes zoomIn {
             from { background-size: 100%; }
             to { background-size: 110%; }
-        }
-
-        .page-header {
-            animation: zoomIn 25s ease-in-out infinite alternate;
         }
 
         .page-header .container {
@@ -952,23 +951,19 @@
             margin-top: 1rem;
         }
 
-        /* Hide original detailed services on mobile if needed? No, we keep them. */
         .body-blur #main-content {
             filter: blur(5px);
             pointer-events: none;
             user-select: none;
         }
 
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .engagement-options .service-card {
-                flex: 0 1 300px;
+        /* ----- MOBILE RESPONSIVE (optimized for phone, same as homepage) ----- */
+        @media (max-width: 1024px) {
+            section {
+                padding: 4.5rem 0;
             }
-        }
-
-        @media (max-width: 992px) {
-            .service-detail-header {
-                flex-direction: column;
+            .section-title {
+                font-size: 2.5rem;
             }
         }
 
@@ -1002,16 +997,23 @@
 
             .hamburger { display: flex; }
 
+            /* Increase hero height for mobile */
             .page-header {
                 margin-top: 70px;
-                min-height: 350px;
+                min-height: 60vh;          /* increased from 350px */
                 padding: 3rem 0;
+                animation: none;            /* disable zoom animation on mobile */
             }
 
             .page-header h1 { font-size: 2rem; }
 
-            section { padding: 4rem 0; }
+            /* Hide slideshow arrows on mobile */
+            .slideshow-prev,
+            .slideshow-next {
+                display: none;
+            }
 
+            section { padding: 4rem 0; }
             .section-title { font-size: 2rem; }
 
             .cards-grid,
@@ -1037,24 +1039,19 @@
                 text-align: center;
             }
 
-            .slideshow-prev,
-            .slideshow-next {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-
             .footer-grid { gap: 2.5rem; }
         }
 
         @media (max-width: 480px) {
+            html { font-size: 13px; }
+
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
             h3 { font-size: 1.3rem; }
 
             .page-header {
                 margin-top: 65px;
-                min-height: 300px;
+                min-height: 50vh;           /* increased from 300px */
                 padding: 2rem 0;
             }
 
@@ -1097,7 +1094,7 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html" class="active">Services</a></li>
                     <li><a href="industries.html">Industries</a></li>
-                    <li><a href="contact.html">Contact</a></li>  <!-- updated link -->
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <div class="hamburger" id="hamburger">
                     <span></span><span></span><span></span>
@@ -1108,8 +1105,8 @@
 
     <!-- Main content wrapper for blur effect -->
     <div id="main-content">
-        <!-- Page Header with Background Slideshow (matches home/about) -->
-        <section class="page-header slideshow-section" id="servicesHeader" data-images='["assets/services_1.jpg","assets/services_2.png"]'>
+        <!-- Page Header with Background Slideshow (WebP only) -->
+        <section class="page-header slideshow-section" id="servicesHeader" data-images='["assets/services_1.webp","assets/services_2.webp"]'>
             <div class="container">
                 <h1>Core Service Domains</h1>
                 <p class="page-header-subtitle">From assessment to implementation, governance to response—we deliver security excellence across every domain</p>
@@ -1732,7 +1729,7 @@
                 <h2>Ready to Transform Your Security Posture?</h2>
                 <p>Whether you need a single assessment, full-scale implementation, or ongoing strategic partnership—we're ready to help you build enterprise-grade security that scales with your business.</p>
                 <div class="cta-buttons">
-                    <a href="contact.html" class="btn btn-primary">Schedule a Consultation</a>  <!-- updated link -->
+                    <a href="contact.html" class="btn btn-primary">Schedule a Consultation</a>
                     <a href="about.html" class="btn btn-secondary">Learn More About Us</a>
                 </div>
             </div>
@@ -1771,13 +1768,13 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="industries.html">Industries</a></li>
-                    <li><a href="contact.html">Contact</a></li>  <!-- updated link -->
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-contact">
                 <h4>Contact Information</h4>
-                <p><a href="mailto:sales@rezoluteconsulting.com">sales@rezoluteconsulting.com</a></p>  <!-- fixed -->
-                <p><a href="mailto:tech@rezoluteconsulting.com">tech@rezoluteconsulting.com</a></p>    <!-- fixed -->
+                <p><a href="mailto:sales@rezoluteconsulting.com">sales@rezoluteconsulting.com</a></p>
+                <p><a href="mailto:tech@rezoluteconsulting.com">tech@rezoluteconsulting.com</a></p>
                 <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(155, 77, 255, 0.1);">
                     <p><strong>Address:</strong><br>16 CAC Street<br>Alapere, Lagos<br>Nigeria</p>
                     <p style="margin-top: 1rem;"><strong>Response Time:</strong> 24 hours<br><strong>SLA:</strong> 99.9% uptime</p>
@@ -1819,7 +1816,7 @@
             });
         }
 
-        // Background Slideshow
+        // Background Slideshow (WebP only)
         (function() {
             const section = document.getElementById('servicesHeader');
             if (!section) return;
@@ -1836,7 +1833,7 @@
             let interval = setInterval(() => {
                 currentIndex = (currentIndex + 1) % images.length;
                 section.style.backgroundImage = `url('${images[currentIndex]}')`;
-            }, 10000);
+            }, 8000); // 8 seconds
 
             const prevBtn = section.querySelector('.slideshow-prev');
             const nextBtn = section.querySelector('.slideshow-next');
@@ -1849,7 +1846,7 @@
                     interval = setInterval(() => {
                         currentIndex = (currentIndex + 1) % images.length;
                         section.style.backgroundImage = `url('${images[currentIndex]}')`;
-                    }, 10000);
+                    }, 8000);
                 });
             }
 
@@ -1861,7 +1858,7 @@
                     interval = setInterval(() => {
                         currentIndex = (currentIndex + 1) % images.length;
                         section.style.backgroundImage = `url('${images[currentIndex]}')`;
-                    }, 10000);
+                    }, 8000);
                 });
             }
         })();
@@ -1928,6 +1925,5 @@
             }
         });
     </script>
-    <!-- Removed Cloudflare email decode script -->
 </body>
 </html>
