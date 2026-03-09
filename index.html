@@ -35,7 +35,7 @@
         :root {
             --primary-purple: #9b4dff;
             --secondary-red: #ff4d4d;
-            --accent-purple-light: #b47aff;  /* lighter purple for accents/hover */
+            --accent-purple-light: #b47aff;
             --dark-bg: #0a0a0a;
             --dark-card: rgba(30, 30, 30, 0.8);
             --border-light: rgba(255, 255, 255, 0.08);
@@ -54,7 +54,6 @@
             letter-spacing: -0.02em;
         }
 
-        /* Hero headline font reduced by ~20% */
         h1 {
             font-size: clamp(2rem, 7vw, 4.4rem);
             font-weight: 800;
@@ -163,7 +162,7 @@
             gap: 1.5rem;
             flex-wrap: wrap;
             margin-top: 2.5rem;
-            justify-content: center; /* ensure centering */
+            justify-content: center;
         }
 
         /* ----- INVISIBLE HEADER (fixed, hides on scroll) ----- */
@@ -256,7 +255,7 @@
             transform: rotate(-45deg) translate(7px, -7px);
         }
 
-        /* ----- HERO SECTION with slideshow (WebP + JPEG fallback) ----- */
+        /* ----- HERO SECTION with slideshow (only WebP, no JPEG fallback) ----- */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -309,7 +308,6 @@
             padding: 3rem 0;
         }
 
-        /* Logo inside hero, directly above h1 */
         .hero-header {
             margin-bottom: 1.5rem;
         }
@@ -354,7 +352,6 @@
             color: var(--primary-purple);
         }
 
-        /* h1: "Securing" and typed phrase on separate lines */
         .hero h1 {
             display: flex;
             flex-direction: column;
@@ -392,7 +389,6 @@
             line-height: 1.8;
         }
 
-        /* EXTREMELY FAINT ARROWS (5% visibility) */
         .slideshow-prev,
         .slideshow-next {
             position: absolute;
@@ -457,7 +453,6 @@
             color: var(--text-secondary);
         }
 
-        /* industries grid */
         .industries-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -527,7 +522,6 @@
             color: var(--accent-purple-light);
         }
 
-        /* services grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -579,7 +573,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* tech grid */
         .tech-grid {
             display: flex;
             flex-wrap: wrap;
@@ -627,7 +620,6 @@
             font-weight: 600;
         }
 
-        /* ----- METRICS (Why Choose) – numbers purple ----- */
         .metrics-grid {
             display: flex;
             flex-wrap: wrap;
@@ -661,17 +653,16 @@
             box-shadow: 0 30px 80px rgba(155, 77, 255, 0.2);
         }
 
-        /* Numbers now purple (was red) */
         .metric-number {
             font-size: 3.5rem;
             font-weight: 800;
-            color: var(--primary-purple);  /* changed to purple */
+            color: var(--primary-purple);
             margin-bottom: 1rem;
             transition: color var(--transition-fast);
         }
 
         .metric-card:hover .metric-number {
-            color: var(--accent-purple-light); /* lighter purple on hover */
+            color: var(--accent-purple-light);
         }
 
         .metric-label {
@@ -680,7 +671,6 @@
             line-height: 1.6;
         }
 
-        /* final CTA */
         .final-cta {
             text-align: center;
             padding: 6rem 0;
@@ -701,7 +691,6 @@
             font-size: 1.1rem;
         }
 
-        /* footer */
         footer {
             background: rgba(0, 0, 0, 0.7);
             border-top: 1px solid rgba(155, 77, 255, 0.1);
@@ -805,7 +794,6 @@
 
         /* ----- MOBILE RESPONSIVE (OPTIMIZED FOR PHONE) ----- */
         @media (max-width: 1024px) {
-            /* Tablet & below */
             .invisible-header nav ul {
                 gap: 2rem;
             }
@@ -831,7 +819,6 @@
         @media (max-width: 768px) {
             html { font-size: 14px; }
 
-            /* Navigation: full mobile menu */
             .invisible-header nav {
                 width: 100%;
                 padding: 0 5%;
@@ -856,9 +843,9 @@
 
             .hamburger { display: flex; }
 
-            /* Hero section: reduce height and padding */
+            /* Reduce hero height for mobile */
             .hero {
-                min-height: 80vh;
+                min-height: 60vh;  /* reduced from 80vh */
                 padding-top: 70px;
             }
 
@@ -866,7 +853,6 @@
                 padding: 2rem 0;
             }
 
-            /* Logo sizing for mobile */
             .logo-text .rezolute { 
                 font-size: 2rem; 
             }
@@ -879,7 +865,6 @@
                 height: 45px; 
             }
 
-            /* Hero headline */
             .hero h1 {
                 font-size: 1.8rem;
                 margin-bottom: 1rem;
@@ -890,7 +875,6 @@
                 margin-bottom: 1.8rem;
             }
 
-            /* CTA buttons: stack on small devices */
             .cta-buttons {
                 flex-direction: column;
                 gap: 1rem;
@@ -900,18 +884,12 @@
                 width: 100%;
             }
 
-            /* Slideshow arrows: hide on small mobile, adjust on tablet */
+            /* Hide slideshow arrows on mobile */
             .slideshow-prev,
             .slideshow-next {
-                width: 42px;
-                height: 42px;
-                font-size: 1.1rem;
+                display: none;
             }
 
-            .slideshow-prev { left: 1.5rem; }
-            .slideshow-next { right: 1.5rem; }
-
-            /* Sections */
             section {
                 padding: 3.5rem 0;
             }
@@ -931,7 +909,6 @@
                 margin-bottom: 2rem;
             }
 
-            /* Grids: single column on mobile */
             .industries-grid,
             .services-grid {
                 grid-template-columns: 1fr;
@@ -960,7 +937,6 @@
                 margin-bottom: 1rem;
             }
 
-            /* Tech grid: smaller on mobile */
             .tech-grid {
                 gap: 1.5rem;
             }
@@ -979,7 +955,6 @@
                 font-size: 0.85rem;
             }
 
-            /* Metrics: stack on mobile */
             .metrics-grid {
                 gap: 1.5rem;
             }
@@ -1000,7 +975,6 @@
                 font-size: 0.85rem;
             }
 
-            /* Final CTA */
             .final-cta {
                 padding: 4rem 0;
             }
@@ -1015,7 +989,6 @@
                 margin-bottom: 1.8rem;
             }
 
-            /* Footer */
             .footer-grid {
                 gap: 2.5rem;
                 padding: 0 5%;
@@ -1045,7 +1018,6 @@
         @media (max-width: 480px) {
             html { font-size: 13px; }
 
-            /* Extra small mobile adjustments */
             .invisible-header {
                 padding: 1rem 0;
             }
@@ -1056,7 +1028,7 @@
             }
 
             .hero {
-                min-height: 75vh;
+                min-height: 50vh;  /* further reduced for very small screens */
                 padding-top: 65px;
             }
 
@@ -1102,16 +1074,6 @@
                 padding: 0.85rem 1.5rem;
                 font-size: 0.9rem;
             }
-
-            .slideshow-prev,
-            .slideshow-next {
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
-            }
-
-            .slideshow-prev { left: 1rem; }
-            .slideshow-next { right: 1rem; }
 
             section {
                 padding: 2.5rem 0;
@@ -1178,7 +1140,6 @@
     </style>
 </head>
 <body>
-    <!-- Invisible Header (Navigation Only) - Fixed, hides on scroll -->
     <header class="invisible-header" id="mainHeader">
         <nav>
             <ul class="nav-menu" id="nav-menu">
@@ -1193,10 +1154,9 @@
         </nav>
     </header>
 
-    <!-- Hero Section with WebP + JPEG fallback slideshow -->
-    <section class="hero" id="homeHero" data-images='["assets/home_1.webp","assets/home_2.webp","assets/home_3.webp","assets/home_4.webp"]' data-fallback-images='["assets/home_1.jpg","assets/home_2.jpg","assets/home_3.jpg","assets/home_4.jpg"]'>
+    <!-- Hero Section with WebP slideshow (no JPEG fallback) -->
+    <section class="hero" id="homeHero" data-images='["assets/home_1.webp","assets/home_2.webp","assets/home_3.webp","assets/home_4.webp"]'>
         <div class="container">
-            <!-- Logo inside hero -->
             <div class="hero-header">
                 <a href="index.html" class="logo">
                     <img src="assets/Logo.png" alt="Rezolute Consulting">
@@ -1313,7 +1273,7 @@
         </div>
     </section>
 
-    <!-- Trust Signals (Why Choose) – numbers now purple -->
+    <!-- Trust Signals (Why Choose) -->
     <section class="trust-section">
         <div class="container">
             <p class="section-subtitle">Why Choose Rezolute</p>
@@ -1462,29 +1422,26 @@
 
         window.addEventListener('load', type);
 
-        // Background Slideshow with WebP support and fallback
+        // Background Slideshow with WebP only (no fallback to JPEG)
         (function() {
             const section = document.getElementById('homeHero');
             if (!section) return;
 
             const imagesAttr = section.dataset.images;
-            const fallbackImagesAttr = section.dataset.fallbackImages;
-            
             if (!imagesAttr) return;
 
             const images = JSON.parse(imagesAttr);
-            const fallbackImages = fallbackImagesAttr ? JSON.parse(fallbackImagesAttr) : images;
             let currentIndex = 0;
-            let useWebP = true;
 
-            // Check WebP support
-            const webpCanvas = document.createElement('canvas');
-            webpCanvas.width = webpCanvas.height = 1;
-            useWebP = webpCanvas.toDataURL('image/webp').indexOf('image/webp') === 0;
+            // Correct WebP support detection
+            const canvas = document.createElement('canvas');
+            canvas.width = canvas.height = 1;
+            const supportsWebP = canvas.toDataURL('image/webp').startsWith('data:image/webp');
 
+            // If WebP is supported, use images as-is; otherwise, we still use them (no fallback)
+            // (This avoids 404s since only WebP files exist)
             function setBackgroundImage(index) {
-                const imageSrc = useWebP ? images[index] : fallbackImages[index];
-                section.style.backgroundImage = `url('${imageSrc}')`;
+                section.style.backgroundImage = `url('${images[index]}')`;
             }
 
             setBackgroundImage(0);
@@ -1492,7 +1449,7 @@
             let interval = setInterval(() => {
                 currentIndex = (currentIndex + 1) % images.length;
                 setBackgroundImage(currentIndex);
-            }, 8000); // 8 seconds display (optimized timing)
+            }, 8000);
 
             const prevBtn = section.querySelector('.slideshow-prev');
             const nextBtn = section.querySelector('.slideshow-next');
