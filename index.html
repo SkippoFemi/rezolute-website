@@ -256,7 +256,7 @@
             transform: rotate(-45deg) translate(7px, -7px);
         }
 
-        /* ----- HERO SECTION with slideshow (simple background-image transition) ----- */
+        /* ----- HERO SECTION with slideshow (WebP + JPEG fallback) ----- */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -269,7 +269,7 @@
             overflow: hidden;
             isolation: isolate;
             padding-top: 80px;
-            transition: background-image 1s ease-in-out;
+            transition: background-image 0.8s ease-in-out;
             animation: zoomIn 20s ease-in-out infinite alternate;
         }
 
@@ -321,6 +321,7 @@
             text-decoration: none;
             color: #fff;
             transition: opacity var(--transition-fast);
+            width: fit-content;
         }
 
         .logo:hover {
@@ -391,22 +392,23 @@
             line-height: 1.8;
         }
 
+        /* EXTREMELY FAINT ARROWS (5% visibility) */
         .slideshow-prev,
         .slideshow-next {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             z-index: 10;
-            background: rgba(155, 77, 255, 0.15);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(155, 77, 255, 0.3);
+            background: rgba(155, 77, 255, 0.05);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(155, 77, 255, 0.08);
             width: 50px;
             height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
+            color: rgba(255, 255, 255, 0.15);
             font-size: 1.3rem;
             cursor: pointer;
             transition: all var(--transition-fast);
@@ -414,10 +416,11 @@
 
         .slideshow-prev:hover,
         .slideshow-next:hover {
-            background: rgba(155, 77, 255, 0.3);
-            border-color: var(--primary-purple);
-            transform: translateY(-50%) scale(1.15);
-            box-shadow: 0 10px 40px rgba(155, 77, 255, 0.3);
+            background: rgba(155, 77, 255, 0.15);
+            border-color: rgba(155, 77, 255, 0.25);
+            color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 24px rgba(155, 77, 255, 0.1);
         }
 
         .slideshow-prev { left: 2.5rem; }
@@ -800,11 +803,39 @@
             margin-bottom: 0.8rem;
         }
 
-        /* ----- RESPONSIVE ----- */
+        /* ----- MOBILE RESPONSIVE (OPTIMIZED FOR PHONE) ----- */
+        @media (max-width: 1024px) {
+            /* Tablet & below */
+            .invisible-header nav ul {
+                gap: 2rem;
+            }
+
+            .invisible-header nav a {
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 4.5rem 0;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .metric-card {
+                width: 260px;
+                height: 260px;
+            }
+        }
+
         @media (max-width: 768px) {
             html { font-size: 14px; }
 
-            .invisible-header { padding: 1.2rem 0; }
+            /* Navigation: full mobile menu */
+            .invisible-header nav {
+                width: 100%;
+                padding: 0 5%;
+            }
 
             .invisible-header nav ul {
                 position: fixed;
@@ -825,50 +856,324 @@
 
             .hamburger { display: flex; }
 
-            .hero { min-height: 85vh; }
+            /* Hero section: reduce height and padding */
+            .hero {
+                min-height: 80vh;
+                padding-top: 70px;
+            }
 
-            .logo-text .rezolute { font-size: 2.2rem; }
-            .logo-text .consulting { font-size: 1.8rem; }
-            .logo img { height: 50px; }
+            .hero .container {
+                padding: 2rem 0;
+            }
 
-            section { padding: 4rem 0; }
-            .section-title { font-size: 2rem; }
+            /* Logo sizing for mobile */
+            .logo-text .rezolute { 
+                font-size: 2rem; 
+            }
 
+            .logo-text .consulting { 
+                font-size: 1.5rem; 
+            }
+
+            .logo img { 
+                height: 45px; 
+            }
+
+            /* Hero headline */
+            .hero h1 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 1.8rem;
+            }
+
+            /* CTA buttons: stack on small devices */
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            /* Slideshow arrows: hide on small mobile, adjust on tablet */
+            .slideshow-prev,
+            .slideshow-next {
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+            }
+
+            .slideshow-prev { left: 1.5rem; }
+            .slideshow-next { right: 1.5rem; }
+
+            /* Sections */
+            section {
+                padding: 3.5rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.75rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .section-desc {
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
+            }
+
+            /* Grids: single column on mobile */
             .industries-grid,
             .services-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
-            .cta-buttons { flex-direction: column; }
-            .btn { width: 100%; }
+            .industry-preview,
+            .service-card {
+                padding: 2rem;
+            }
 
-            .slideshow-prev,
-            .slideshow-next {
-                width: 45px;
-                height: 45px;
+            .industry-icon,
+            .service-icon {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .industry-preview h3,
+            .service-card h3 {
                 font-size: 1.2rem;
+            }
+
+            .industry-preview p,
+            .service-card p {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            /* Tech grid: smaller on mobile */
+            .tech-grid {
+                gap: 1.5rem;
+            }
+
+            .tech-item {
+                flex: 0 1 160px;
+                padding: 1.5rem 1rem;
+            }
+
+            .tech-icon {
+                font-size: 2.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .tech-item h4 {
+                font-size: 0.85rem;
+            }
+
+            /* Metrics: stack on mobile */
+            .metrics-grid {
+                gap: 1.5rem;
             }
 
             .metric-card {
                 width: 100%;
-                max-width: 320px;
+                max-width: 280px;
                 height: auto;
-                min-height: 220px;
+                min-height: 180px;
+                padding: 2rem;
+            }
+
+            .metric-number {
+                font-size: 2.5rem;
+            }
+
+            .metric-label {
+                font-size: 0.85rem;
+            }
+
+            /* Final CTA */
+            .final-cta {
+                padding: 4rem 0;
+            }
+
+            .final-cta h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .final-cta p {
+                font-size: 0.95rem;
+                margin-bottom: 1.8rem;
+            }
+
+            /* Footer */
+            .footer-grid {
+                gap: 2.5rem;
+                padding: 0 5%;
+            }
+
+            .footer-logo h3 {
+                font-size: 1.1rem;
+            }
+
+            .footer-logo img {
+                height: 35px;
+            }
+
+            .footer-logo p,
+            .footer-links a,
+            .footer-contact a,
+            .footer-contact p {
+                font-size: 0.85rem;
+            }
+
+            .footer-links h4,
+            .footer-contact h4 {
+                font-size: 0.95rem;
             }
         }
 
         @media (max-width: 480px) {
-            h1 { font-size: 1.8rem; }
-            h2 { font-size: 1.5rem; }
+            html { font-size: 13px; }
 
-            .hero { min-height: 70vh; }
+            /* Extra small mobile adjustments */
+            .invisible-header {
+                padding: 1rem 0;
+            }
 
-            .invisible-header nav ul { top: 65px; }
+            .hamburger span {
+                width: 24px;
+                height: 2.5px;
+            }
 
-            .tech-item { flex: 0 1 150px; }
-            .tech-icon { font-size: 2.2rem; }
+            .hero {
+                min-height: 75vh;
+                padding-top: 65px;
+            }
 
-            .metric-number { font-size: 2rem; }
+            .hero .container {
+                padding: 1.5rem 0;
+            }
+
+            .hero-header {
+                margin-bottom: 1rem;
+            }
+
+            .logo {
+                gap: 0.8rem;
+            }
+
+            .logo img { 
+                height: 40px; 
+            }
+
+            .logo-text .rezolute { 
+                font-size: 1.6rem; 
+            }
+
+            .logo-text .consulting { 
+                font-size: 1.2rem; 
+            }
+
+            .hero h1 {
+                font-size: 1.6rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .cta-buttons {
+                gap: 0.8rem;
+            }
+
+            .btn {
+                padding: 0.85rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .slideshow-prev,
+            .slideshow-next {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+
+            .slideshow-prev { left: 1rem; }
+            .slideshow-next { right: 1rem; }
+
+            section {
+                padding: 2.5rem 0;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.7rem;
+            }
+
+            .industries-grid,
+            .services-grid,
+            .tech-grid {
+                gap: 1rem;
+            }
+
+            .tech-item {
+                flex: 0 1 140px;
+                padding: 1.2rem 0.8rem;
+            }
+
+            .tech-icon {
+                font-size: 2rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .tech-item h4 {
+                font-size: 0.8rem;
+            }
+
+            .metric-card {
+                max-width: 100%;
+                min-height: 160px;
+                padding: 1.5rem;
+            }
+
+            .metric-number {
+                font-size: 2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .metric-label {
+                font-size: 0.8rem;
+            }
+
+            .final-cta {
+                padding: 2.5rem 0;
+            }
+
+            .final-cta h2 {
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .final-cta p {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -880,7 +1185,7 @@
                 <li><a href="about.html">ABOUT US</a></li>
                 <li><a href="services.html">SERVICES</a></li>
                 <li><a href="industries.html">INDUSTRIES</a></li>
-                <li><a href="contact.html">CONTACT</a></li>   <!-- updated link -->
+                <li><a href="contact.html">CONTACT</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
@@ -888,8 +1193,8 @@
         </nav>
     </header>
 
-    <!-- Hero Section with simple background-image slideshow -->
-    <section class="hero" id="homeHero" data-images='["assets/home_1.jpg","assets/home_2.jpg","assets/home_3.png","assets/home_4.jpg"]'>
+    <!-- Hero Section with WebP + JPEG fallback slideshow -->
+    <section class="hero" id="homeHero" data-images='["assets/home_1.webp","assets/home_2.webp","assets/home_3.webp","assets/home_4.webp"]' data-fallback-images='["assets/home_1.jpg","assets/home_2.jpg","assets/home_3.jpg","assets/home_4.jpg"]'>
         <div class="container">
             <!-- Logo inside hero -->
             <div class="hero-header">
@@ -912,8 +1217,8 @@
                 <a href="industries.html" class="btn btn-secondary">Find Your Industry</a>
             </div>
         </div>
-        <button class="slideshow-prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slideshow-next"><i class="fas fa-chevron-right"></i></button>
+        <button class="slideshow-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <button class="slideshow-next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
     </section>
 
     <!-- Industries Preview -->
@@ -1041,7 +1346,7 @@
             <p>Whether you need a single assessment, full-scale implementation, or ongoing strategic partnership—we're ready to help you build enterprise-grade security that scales with your business.</p>
             <div class="cta-buttons">
                 <a href="services.html" class="btn btn-primary">View All Services</a>
-                <a href="contact.html" class="btn btn-secondary">Schedule Consultation</a> <!-- updated link -->
+                <a href="contact.html" class="btn btn-secondary">Schedule Consultation</a>
             </div>
         </div>
     </section>
@@ -1068,7 +1373,7 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="industries.html">Industries</a></li>
-                    <li><a href="contact.html">Contact</a></li> <!-- added Contact -->
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-contact">
@@ -1157,23 +1462,37 @@
 
         window.addEventListener('load', type);
 
-        // Background Slideshow (simple background-image transition)
+        // Background Slideshow with WebP support and fallback
         (function() {
             const section = document.getElementById('homeHero');
             if (!section) return;
 
             const imagesAttr = section.dataset.images;
+            const fallbackImagesAttr = section.dataset.fallbackImages;
+            
             if (!imagesAttr) return;
 
             const images = JSON.parse(imagesAttr);
+            const fallbackImages = fallbackImagesAttr ? JSON.parse(fallbackImagesAttr) : images;
             let currentIndex = 0;
+            let useWebP = true;
 
-            section.style.backgroundImage = `url('${images[0]}')`;
+            // Check WebP support
+            const webpCanvas = document.createElement('canvas');
+            webpCanvas.width = webpCanvas.height = 1;
+            useWebP = webpCanvas.toDataURL('image/webp').indexOf('image/webp') === 0;
+
+            function setBackgroundImage(index) {
+                const imageSrc = useWebP ? images[index] : fallbackImages[index];
+                section.style.backgroundImage = `url('${imageSrc}')`;
+            }
+
+            setBackgroundImage(0);
 
             let interval = setInterval(() => {
                 currentIndex = (currentIndex + 1) % images.length;
-                section.style.backgroundImage = `url('${images[currentIndex]}')`;
-            }, 10000);
+                setBackgroundImage(currentIndex);
+            }, 8000); // 8 seconds display (optimized timing)
 
             const prevBtn = section.querySelector('.slideshow-prev');
             const nextBtn = section.querySelector('.slideshow-next');
@@ -1182,11 +1501,11 @@
                 prevBtn.addEventListener('click', () => {
                     clearInterval(interval);
                     currentIndex = (currentIndex - 1 + images.length) % images.length;
-                    section.style.backgroundImage = `url('${images[currentIndex]}')`;
+                    setBackgroundImage(currentIndex);
                     interval = setInterval(() => {
                         currentIndex = (currentIndex + 1) % images.length;
-                        section.style.backgroundImage = `url('${images[currentIndex]}')`;
-                    }, 10000);
+                        setBackgroundImage(currentIndex);
+                    }, 8000);
                 });
             }
 
@@ -1194,15 +1513,14 @@
                 nextBtn.addEventListener('click', () => {
                     clearInterval(interval);
                     currentIndex = (currentIndex + 1) % images.length;
-                    section.style.backgroundImage = `url('${images[currentIndex]}')`;
+                    setBackgroundImage(currentIndex);
                     interval = setInterval(() => {
                         currentIndex = (currentIndex + 1) % images.length;
-                        section.style.backgroundImage = `url('${images[currentIndex]}')`;
-                    }, 10000);
+                        setBackgroundImage(currentIndex);
+                    }, 8000);
                 });
             }
         })();
     </script>
-    <!-- Removed Cloudflare email decode script -->
 </body>
 </html>
