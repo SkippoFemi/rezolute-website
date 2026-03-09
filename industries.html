@@ -34,7 +34,7 @@
         /* ----- CSS VARIABLES (Purple Only) ----- */
         :root {
             --primary-purple: #9b4dff;
-            --secondary-red: #ff4d4d;        /* kept for gradient buttons */
+            --secondary-red: #ff4d4d;
             --accent-purple-light: #b47aff;
             --dark-bg: #0a0a0a;
             --dark-card: rgba(30, 30, 30, 0.8);
@@ -265,7 +265,7 @@
             transform: rotate(-45deg) translate(7px, -7px);
         }
 
-        /* ----- PAGE HEADER (with industry.jpg background) ----- */
+        /* ----- PAGE HEADER (with WebP background) ----- */
         .page-header {
             position: relative;
             min-height: 500px;
@@ -274,12 +274,14 @@
             align-items: center;
             justify-content: center;
             padding: 5rem 0;
-            background-image: url('assets/industry.jpg');
+            background-image: url('assets/industry.webp'); /* changed to WebP */
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat; /* prevents tiling */
             background-attachment: fixed;
             overflow: hidden;
             isolation: isolate;
+            animation: zoomIn 25s ease-in-out infinite alternate;
         }
 
         .page-header::before {
@@ -308,10 +310,6 @@
         @keyframes zoomIn {
             from { background-size: 100%; }
             to { background-size: 110%; }
-        }
-
-        .page-header {
-            animation: zoomIn 25s ease-in-out infinite alternate;
         }
 
         .page-header .container {
@@ -619,7 +617,7 @@
             margin-bottom: 0.8rem;
         }
 
-        /* ----- RESPONSIVE ----- */
+        /* ----- MOBILE RESPONSIVE (optimized for phone) ----- */
         @media (max-width: 768px) {
             html { font-size: 14px; }
 
@@ -650,10 +648,12 @@
 
             .hamburger { display: flex; }
 
+            /* Increase hero height for mobile */
             .page-header {
                 margin-top: 70px;
-                min-height: 350px;
+                min-height: 60vh;          /* increased from 350px */
                 padding: 3rem 0;
+                animation: none;            /* disable zoom animation on mobile */
             }
 
             .page-header h1 { font-size: 2rem; }
@@ -679,13 +679,15 @@
         }
 
         @media (max-width: 480px) {
+            html { font-size: 13px; }
+
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
             h3 { font-size: 1.3rem; }
 
             .page-header {
                 margin-top: 65px;
-                min-height: 300px;
+                min-height: 50vh;           /* increased from 300px */
                 padding: 2rem 0;
             }
 
@@ -718,7 +720,7 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="industries.html" class="active">Industries</a></li>
-                    <li><a href="#contact.html">Contact</a></li>
+                    <li><a href="contact.html">Contact</a></li> <!-- fixed link -->
                 </ul>
                 <div class="hamburger" id="hamburger">
                     <span></span><span></span><span></span>
@@ -727,7 +729,7 @@
         </div>
     </header>
 
-    <!-- Page Header with industry.jpg background -->
+    <!-- Page Header with WebP background -->
     <section class="page-header">
         <div class="container">
             <h1>Industry Solutions</h1>
@@ -895,6 +897,7 @@
                 <h4>Contact Information</h4>
                 <p><a href="mailto:sales@rezoluteconsulting.com">sales@rezoluteconsulting.com</a></p>
                 <p><a href="mailto:tech@rezoluteconsulting.com">tech@rezoluteconsulting.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+2348169992067">+234 816 999 2067</a> | <a href="tel:+2349158443375">+234 915 844 3375</a></p> <!-- added phone numbers -->
                 <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(155, 77, 255, 0.1);">
                     <p><strong>Address:</strong><br>16 CAC Street<br>Alapere, Lagos<br>Nigeria</p>
                     <p style="margin-top: 1rem;"><strong>Response Time:</strong> 24 hours<br><strong>SLA:</strong> 99.9% uptime</p>
@@ -936,6 +939,5 @@
             });
         }
     </script>
- 
 </body>
 </html>
