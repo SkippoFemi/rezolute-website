@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Rezolute Consulting - Deep Cybersecurity Expertise</title>
+    <title>About</title>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -34,7 +34,7 @@
         /* ----- CSS VARIABLES (Purple Only) ----- */
         :root {
             --primary-purple: #9b4dff;
-            --secondary-red: #ff4d4d;        /* kept for gradient buttons only */
+            --secondary-red: #ff4d4d;
             --accent-purple-light: #b47aff;
             --dark-bg: #0a0a0a;
             --dark-card: rgba(30, 30, 30, 0.8);
@@ -136,6 +136,62 @@
             margin-top: 2.5rem;
         }
 
+        /* ----- PHONE CTA (refined, copied from homepage) ----- */
+        .phone-cta {
+            margin-top: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, rgba(155, 77, 255, 0.08) 0%, rgba(155, 77, 255, 0.04) 100%);
+            backdrop-filter: blur(8px);
+            padding: 1.2rem 2.2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(155, 77, 255, 0.2);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            transition: all var(--transition-fast);
+        }
+
+        .phone-cta:hover {
+            border-color: rgba(155, 77, 255, 0.4);
+            background: linear-gradient(135deg, rgba(155, 77, 255, 0.12) 0%, rgba(155, 77, 255, 0.06) 100%);
+            box-shadow: 0 8px 24px rgba(155, 77, 255, 0.12);
+        }
+
+        .phone-cta i {
+            color: var(--primary-purple);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .phone-cta .prompt {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .phone-cta .numbers {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .phone-cta .numbers a {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color var(--transition-fast);
+            letter-spacing: 0.3px;
+        }
+
+        .phone-cta .numbers a:hover {
+            color: var(--accent-purple-light);
+        }
+
         /* ----- HEADER with split logo (matches homepage hero) ----- */
         .glassy-header {
             position: fixed;
@@ -189,14 +245,14 @@
         }
 
         .logo-text .rezolute {
-            font-size: 1.6rem;          /* smaller for header */
+            font-size: 1.6rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             color: #fff;
         }
 
         .logo-text .consulting {
-            font-size: 1.3rem;           /* smaller for header */
+            font-size: 1.3rem;
             font-weight: 700;
             letter-spacing: 0.5px;
             color: var(--primary-purple);
@@ -265,7 +321,7 @@
             transform: rotate(-45deg) translate(7px, -7px);
         }
 
-        /* ----- PAGE HEADER (slideshow) ----- */
+        /* ----- PAGE HEADER (slideshow) with WebP only, tiling fix ----- */
         .page-header {
             position: relative;
             min-height: 500px;
@@ -276,9 +332,17 @@
             padding: 5rem 0;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat; /* prevent tiling */
             background-attachment: fixed;
             overflow: hidden;
             isolation: isolate;
+            transition: background-image 0.8s ease-in-out;
+            animation: zoomIn 25s ease-in-out infinite alternate;
+        }
+
+        @keyframes zoomIn {
+            from { background-size: 100%; }
+            to { background-size: 110%; }
         }
 
         .page-header::before {
@@ -302,15 +366,6 @@
                 radial-gradient(circle at 20% 50%, rgba(155, 77, 255, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(155, 77, 255, 0.1) 0%, transparent 50%);
             z-index: 0;
-        }
-
-        @keyframes zoomIn {
-            from { background-size: 100%; }
-            to { background-size: 110%; }
-        }
-
-        .page-header {
-            animation: zoomIn 25s ease-in-out infinite alternate;
         }
 
         .page-header .container {
@@ -879,23 +934,52 @@
             margin-bottom: 0.8rem;
         }
 
-        /* ----- RESPONSIVE ----- */
-        @media (max-width: 1200px) {
-            .implementation-lifecycle .centered-cards-grid > .card {
-                flex: 0 1 280px;
+        /* ----- MOBILE RESPONSIVE (optimized for phone, same as homepage) ----- */
+        @media (max-width: 1024px) {
+            .invisible-header nav ul {
+                gap: 2rem;
+            }
+
+            .invisible-header nav a {
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 4.5rem 0;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .metric-card {
+                width: 260px;
+                height: 260px;
             }
         }
 
         @media (max-width: 768px) {
             html { font-size: 14px; }
 
-            .glassy-header { margin-top: 0; }
+            .glassy-header {
+                margin-top: 0;
+            }
 
-            .header-container { padding: 0.8rem 0; }
+            .header-container {
+                padding: 0.8rem 0;
+            }
 
-            .logo-text .rezolute { font-size: 1.4rem; }
-            .logo-text .consulting { font-size: 1.1rem; }
-            .logo img { height: 35px; }
+            .logo-text .rezolute {
+                font-size: 1.4rem;
+            }
+
+            .logo-text .consulting {
+                font-size: 1.1rem;
+            }
+
+            .logo img {
+                height: 35px;
+            }
 
             nav ul {
                 position: fixed;
@@ -916,17 +1000,58 @@
 
             .hamburger { display: flex; }
 
+            /* Increase page header height for mobile */
             .page-header {
                 margin-top: 70px;
-                min-height: 350px;
+                min-height: 60vh;          /* increased from 350px */
                 padding: 3rem 0;
+                animation: none;            /* disable zoom animation on mobile */
             }
 
-            .page-header h1 { font-size: 2rem; }
+            .page-header h1 {
+                font-size: 2rem;
+            }
 
-            section { padding: 4rem 0; }
+            /* Hide slideshow arrows on mobile */
+            .slideshow-prev,
+            .slideshow-next {
+                display: none;
+            }
 
-            .section-title { font-size: 2rem; }
+            /* Phone CTA adjustments for mobile */
+            .phone-cta {
+                flex-direction: column;
+                gap: 0.8rem;
+                padding: 1rem 1.5rem;
+                width: calc(100% - 2rem);
+            }
+
+            .phone-cta i {
+                font-size: 1.1rem;
+            }
+
+            .phone-cta .prompt {
+                font-size: 0.9rem;
+                white-space: normal;
+            }
+
+            .phone-cta .numbers {
+                justify-content: center;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .phone-cta .numbers a {
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
 
             .cards-grid,
             .centered-cards-grid {
@@ -941,7 +1066,9 @@
                 max-width: 400px;
             }
 
-            .metrics-grid { gap: 2rem; }
+            .metrics-grid {
+                gap: 2rem;
+            }
 
             .metric-card {
                 width: 100%;
@@ -950,32 +1077,37 @@
                 min-height: 220px;
             }
 
-            .metric-number { font-size: 2.5rem; }
-
-            .cta-buttons { flex-direction: column; }
-
-            .btn { width: 100%; }
-
-            .slideshow-prev,
-            .slideshow-next {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
+            .metric-number {
+                font-size: 2.5rem;
             }
 
-            footer { padding: 3rem 0 1.5rem; }
+            .cta-buttons {
+                flex-direction: column;
+            }
 
-            .footer-grid { gap: 2.5rem; }
+            .btn {
+                width: 100%;
+            }
+
+            footer {
+                padding: 3rem 0 1.5rem;
+            }
+
+            .footer-grid {
+                gap: 2.5rem;
+            }
         }
 
         @media (max-width: 480px) {
+            html { font-size: 13px; }
+
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
             h3 { font-size: 1.3rem; }
 
             .page-header {
                 margin-top: 65px;
-                min-height: 300px;
+                min-height: 50vh;           /* increased from 300px */
                 padding: 2rem 0;
             }
 
@@ -989,12 +1121,43 @@
                 gap: 1rem;
             }
 
-            .tech-item { flex: 0 1 140px; }
-            .tech-icon { font-size: 2.2rem; }
+            .phone-cta {
+                gap: 0.6rem;
+                padding: 0.9rem 1.2rem;
+                width: calc(100% - 1.5rem);
+            }
 
-            .metric-number { font-size: 2rem; }
+            .phone-cta i {
+                font-size: 1rem;
+            }
 
-            .card { padding: 1.8rem; }
+            .phone-cta .prompt {
+                font-size: 0.85rem;
+            }
+
+            .phone-cta .numbers {
+                gap: 0.8rem;
+            }
+
+            .phone-cta .numbers a {
+                font-size: 0.85rem;
+            }
+
+            .tech-item {
+                flex: 0 1 140px;
+            }
+
+            .tech-icon {
+                font-size: 2.2rem;
+            }
+
+            .metric-number {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -1024,13 +1187,22 @@
         </div>
     </header>
 
-    <!-- Page Header (slideshow) -->
-    <section class="page-header" id="aboutHeader" data-images='["assets/about_1.png","assets/about_2.jpg"]'>
+    <!-- Page Header (slideshow) - now using .webp images only -->
+    <section class="page-header" id="aboutHeader" data-images='["assets/about_1.webp","assets/about_2.webp"]'>
         <div class="container">
             <h1>The Deepest Cybersecurity Expertise in the Industry</h1>
+            <!-- Phone CTA added -->
+            <div class="phone-cta">
+                <i class="fas fa-phone-alt"></i>
+                <span class="prompt">Speak with an expert today:</span>
+                <span class="numbers">
+                    <a href="tel:+2348169992067">+234 816 999 2067</a>
+                    <a href="tel:+2349158443375">+234 915 844 3375</a>
+                </span>
+            </div>
         </div>
-        <button class="slideshow-prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slideshow-next"><i class="fas fa-chevron-right"></i></button>
+        <button class="slideshow-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <button class="slideshow-next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
     </section>
 
     <!-- About Intro -->
@@ -1118,7 +1290,7 @@
                 <div class="tech-item"><i class="fas fa-database tech-icon"></i><h4>System Security</h4></div>
                 <div class="tech-item"><i class="fas fa-lock tech-icon"></i><h4>Data Security</h4></div>
                 <div class="tech-item"><i class="fas fa-id-card tech-icon"></i><h4>Identity & Access Management</h4></div>
-                <div class="tech-item"><i class="fas fa-shield-alt tech-icon"></i><h4>Security Operations</h4></div>   <!-- icon fixed -->
+                <div class="tech-item"><i class="fas fa-shield-alt tech-icon"></i><h4>Security Operations</h4></div>
                 <div class="tech-item"><i class="fas fa-cogs tech-icon"></i><h4>DevSecOps</h4></div>
                 <div class="tech-item"><i class="fas fa-search tech-icon"></i><h4>Assessment & VAPT</h4></div>
                 <div class="tech-item"><i class="fas fa-check-circle tech-icon"></i><h4>Certification & Compliance</h4></div>
@@ -1348,7 +1520,7 @@
         </div>
     </section>
 
-    <!-- Implementation Lifecycle (4 cards, now on one line) -->
+    <!-- Implementation Lifecycle (4 cards) -->
     <section class="implementation-lifecycle">
         <div class="container">
             <p class="section-subtitle">4-Phase NIST-Based Framework</p>
@@ -1489,9 +1661,10 @@
                 </ul>
             </div>
             <div class="footer-contact">
-                <h4>Contact Us</h4>
+                <h4>Contact Information</h4>
                 <p><a href="mailto:sales@rezoluteconsulting.com">sales@rezoluteconsulting.com</a></p>
                 <p><a href="mailto:tech@rezoluteconsulting.com">tech@rezoluteconsulting.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+2348169992067">+234 816 999 2067</a> | <a href="tel:+2349158443375">+234 915 844 3375</a></p>
                 <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(155, 77, 255, 0.1);">
                     <p><strong>Address:</strong><br>16 CAC Street<br>Alapere, Lagos<br>Nigeria</p>
                     <p style="margin-top: 1rem;"><strong>Response Time:</strong> 24h<br><strong>SLA:</strong> 99.9% uptime commitment</p>
@@ -1533,7 +1706,7 @@
             });
         }
 
-        // Background Slideshow (simple)
+        // Background Slideshow (WebP only, with tiling prevention)
         (function() {
             const section = document.getElementById('aboutHeader');
             if (!section) return;
@@ -1544,13 +1717,14 @@
             const images = JSON.parse(imagesAttr);
             let currentIndex = 0;
 
+            // Set initial background
             section.style.backgroundImage = `url('${images[0]}')`;
-            section.style.transition = 'background-image 1s ease-in-out';
+            section.style.transition = 'background-image 0.8s ease-in-out';
 
             let interval = setInterval(() => {
                 currentIndex = (currentIndex + 1) % images.length;
                 section.style.backgroundImage = `url('${images[currentIndex]}')`;
-            }, 10000);
+            }, 8000); // 8 seconds
 
             const prevBtn = section.querySelector('.slideshow-prev');
             const nextBtn = section.querySelector('.slideshow-next');
@@ -1563,7 +1737,7 @@
                     interval = setInterval(() => {
                         currentIndex = (currentIndex + 1) % images.length;
                         section.style.backgroundImage = `url('${images[currentIndex]}')`;
-                    }, 10000);
+                    }, 8000);
                 });
             }
 
@@ -1575,11 +1749,10 @@
                     interval = setInterval(() => {
                         currentIndex = (currentIndex + 1) % images.length;
                         section.style.backgroundImage = `url('${images[currentIndex]}')`;
-                    }, 10000);
+                    }, 8000);
                 });
             }
         })();
     </script>
-    <!-- Removed Cloudflare email decode script -->
 </body>
 </html>
