@@ -727,7 +727,7 @@
             margin-bottom: 0.8rem;
         }
 
-        /* ----- RESPONSIVE ----- */
+        /* ----- MOBILE RESPONSIVE (optimized for phone) ----- */
         @media (max-width: 768px) {
             html { font-size: 14px; }
 
@@ -787,10 +787,17 @@
                 gap: 0;
             }
 
+            /* Reduce spacing between form fields on mobile */
+            .form-group {
+                margin-bottom: 0.8rem;
+            }
+
             .footer-grid { gap: 2.5rem; }
         }
 
         @media (max-width: 480px) {
+            html { font-size: 13px; }
+
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
 
