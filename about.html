@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+    <title>About Rezolute Consulting - Deep Cybersecurity Expertise</title>
     <link rel="icon" type="image/png" href="assets/Logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -332,7 +332,7 @@
             padding: 5rem 0;
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat; /* prevent tiling */
+            background-repeat: no-repeat;
             background-attachment: fixed;
             overflow: hidden;
             isolation: isolate;
@@ -545,7 +545,7 @@
             max-width: 360px;
         }
 
-        /* ----- TECH GRID (icons now use FA5-compatible names) ----- */
+        /* ----- TECH GRID (for expertise icons) ----- */
         .tech-grid {
             display: flex;
             flex-wrap: wrap;
@@ -586,6 +586,21 @@
         .tech-item:hover .tech-icon {
             color: var(--accent-purple-light);
             transform: scale(1.2) rotate(-10deg);
+        }
+
+        /* ----- CERTIFICATION BADGES (new styles for images) ----- */
+        .cert-badge {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 1.2rem;
+            transition: all var(--transition-fast);
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+        }
+
+        .tech-item:hover .cert-badge {
+            transform: scale(1.1) rotate(2deg);
+            filter: drop-shadow(0 8px 12px rgba(155, 77, 255, 0.3));
         }
 
         .tech-item h4 {
@@ -1000,25 +1015,22 @@
 
             .hamburger { display: flex; }
 
-            /* Increase page header height for mobile */
             .page-header {
                 margin-top: 70px;
-                min-height: 60vh;          /* increased from 350px */
+                min-height: 60vh;
                 padding: 3rem 0;
-                animation: none;            /* disable zoom animation on mobile */
+                animation: none;
             }
 
             .page-header h1 {
                 font-size: 2rem;
             }
 
-            /* Hide slideshow arrows on mobile */
             .slideshow-prev,
             .slideshow-next {
                 display: none;
             }
 
-            /* Phone CTA adjustments for mobile */
             .phone-cta {
                 flex-direction: column;
                 gap: 0.8rem;
@@ -1096,6 +1108,12 @@
             .footer-grid {
                 gap: 2.5rem;
             }
+
+            /* Certification badges on mobile */
+            .cert-badge {
+                width: 55px;
+                height: 55px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1107,7 +1125,7 @@
 
             .page-header {
                 margin-top: 65px;
-                min-height: 50vh;           /* increased from 300px */
+                min-height: 50vh;
                 padding: 2rem 0;
             }
 
@@ -1157,6 +1175,12 @@
 
             .card {
                 padding: 1.8rem;
+            }
+
+            /* Certification badges on small mobile */
+            .cert-badge {
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
@@ -1459,7 +1483,7 @@
         </div>
     </section>
 
-    <!-- Team Certifications -->
+    <!-- Team Certifications - NOW WITH ACTUAL BADGE IMAGES -->
     <section class="technology-section">
         <div class="container">
             <p class="section-subtitle">World-Class Certifications</p>
@@ -1468,18 +1492,66 @@
                 <p>Our team holds prestigious, industry-recognized certifications that validate deep technical expertise. We stay ahead of evolving threats through continuous professional development and advanced training.</p>
             </div>
             <div class="tech-grid">
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>CISSP</h4><p>Certified Information Systems Security Professional</p></div>
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>CEH Master</h4><p>Certified Ethical Hacker</p></div>
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>CISM</h4><p>Certified Information Security Manager</p></div>
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>AWS Security</h4><p>Specialty Certified</p></div>
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>Azure Security</h4><p>Engineer Expert</p></div>
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>ISO 27001</h4><p>Lead Implementer</p></div>
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>CCNP Security</h4><p>Cisco Certified</p></div>
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>DevSecOps Engineer</h4><p>Microsoft Certified</p></div>
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>API Security Architect</h4><p>API Academy</p></div>
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>Strategic Cybersecurity</h4><p>AttackIQ Specialist</p></div>
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>COBIT 2019</h4><p>ISACA Foundation</p></div>
-                <div class="tech-item"><i class="fas fa-certificate tech-icon"></i><h4>Leadership Development</h4><p>Daniel Institute</p></div>
+                <div class="tech-item">
+                    <img src="assets/certifications/cissp.webp" alt="CISSP Certification Badge" class="cert-badge">
+                    <h4>CISSP</h4>
+                    <p>Certified Information Systems Security Professional</p>
+                </div>
+                <div class="tech-item">
+                    <img src="assets/certifications/ceh.webp" alt="CEH Master Badge" class="cert-badge">
+                    <h4>CEH Master</h4>
+                    <p>Certified Ethical Hacker</p>
+                </div>
+                <div class="tech-item">
+                    <img src="assets/certifications/cism.webp" alt="CISM Badge" class="cert-badge">
+                    <h4>CISM</h4>
+                    <p>Certified Information Security Manager</p>
+                </div>
+                <div class="tech-item">
+                    <img src="assets/certifications/aws-security.webp" alt="AWS Security Specialty Badge" class="cert-badge">
+                    <h4>AWS Security</h4>
+                    <p>Specialty Certified</p>
+                </div>
+                <div class="tech-item">
+                    <img src="assets/certifications/azure-security.webp" alt="Azure Security Engineer Badge" class="cert-badge">
+                    <h4>Azure Security</h4>
+                    <p>Engineer Expert</p>
+                </div>
+                <div class="tech-item">
+                    <img src="assets/certifications/iso27001.webp" alt="ISO 27001 Lead Implementer Badge" class="cert-badge">
+                    <h4>ISO 27001</h4>
+                    <p>Lead Implementer</p>
+                </div>
+                <div class="tech-item">
+                    <img src="assets/certifications/ccnp-security.webp" alt="CCNP Security Badge" class="cert-badge">
+                    <h4>CCNP Security</h4>
+                    <p>Cisco Certified</p>
+                </div>
+                <div class="tech-item">
+                    <img src="assets/certifications/devsecops.webp" alt="DevSecOps Engineer Badge" class="cert-badge">
+                    <h4>DevSecOps Engineer</h4>
+                    <p>Microsoft Certified</p>
+                </div>
+                <div class="tech-item">
+                    <img src="assets/certifications/api-security.webp" alt="API Security Architect Badge" class="cert-badge">
+                    <h4>API Security Architect</h4>
+                    <p>API Academy</p>
+                </div>
+                <div class="tech-item">
+                    <img src="assets/certifications/attackiq.webp" alt="AttackIQ Specialist Badge" class="cert-badge">
+                    <h4>Strategic Cybersecurity</h4>
+                    <p>AttackIQ Specialist</p>
+                </div>
+                <div class="tech-item">
+                    <img src="assets/certifications/cobit.webp" alt="COBIT 2019 Badge" class="cert-badge">
+                    <h4>COBIT 2019</h4>
+                    <p>ISACA Foundation</p>
+                </div>
+                <div class="tech-item">
+                    <img src="assets/certifications/leadership.webp" alt="Leadership Development Badge" class="cert-badge">
+                    <h4>Leadership Development</h4>
+                    <p>Daniel Institute</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1724,7 +1796,7 @@
             let interval = setInterval(() => {
                 currentIndex = (currentIndex + 1) % images.length;
                 section.style.backgroundImage = `url('${images[currentIndex]}')`;
-            }, 8000); // 8 seconds
+            }, 8000);
 
             const prevBtn = section.querySelector('.slideshow-prev');
             const nextBtn = section.querySelector('.slideshow-next');
